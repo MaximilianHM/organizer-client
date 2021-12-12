@@ -9,21 +9,51 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
-import IsPrivate from './components/IsPrivate/IsPrivate';
+import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
+
+import CategoryListPage from "./pages/CategoryListPage/CategoryListPage";
+import TaskListPage from "./pages/TaskListPage/TaskListPage";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-
       <Routes>
         <Route path="/" element={<HomePage />} />
 
-        <Route path="/profile" element={<IsPrivate> <ProfilePage /> </IsPrivate>} />
+        <Route
+          path="/profile"
+          element={
+            <IsPrivate>
+              {" "}
+              <ProfilePage />{" "}
+            </IsPrivate>
+          }
+        />
 
-        <Route path="/signup" element={<IsAnon> <SignupPage /> </IsAnon>} />
-        <Route path="/login" element={<IsAnon> <LoginPage /> </IsAnon>} />
+        <Route
+          path="/signup"
+          element={
+            <IsAnon>
+              {" "}
+              <SignupPage />{" "}
+            </IsAnon>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <IsAnon>
+              {" "}
+              <LoginPage />{" "}
+            </IsAnon>
+          }
+        />
+
+        <Route path="/categories" element={<CategoryListPage />} />
+
+        <Route path="/categories/:categoryId" element={<TaskListPage />} />
 
         <Route path="*" element={<ErrorPage />} />
       </Routes>
