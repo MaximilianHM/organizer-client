@@ -14,6 +14,7 @@ import IsAnon from "./components/IsAnon/IsAnon";
 
 import CategoryListPage from "./pages/CategoryListPage/CategoryListPage";
 import TaskListPage from "./pages/TaskListPage/TaskListPage";
+import TaskDetailsPage from "./pages/TaskDetailsPage/TaskDetailsPage";
 
 function App() {
   return (
@@ -54,6 +55,8 @@ function App() {
         <Route path="/categories" element={<CategoryListPage />} />
 
         <Route path="/categories/:categoryId" element={<TaskListPage />} />
+
+        <Route path="/tasks/:taskId" element={<TaskDetailsPage />} />
 
         <Route path="*" element={<ErrorPage />} />
       </Routes>
