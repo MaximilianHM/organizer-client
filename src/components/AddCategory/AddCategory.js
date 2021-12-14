@@ -14,7 +14,7 @@ function AddCategory({ refreshCategories }) {
       const requestBody = { categoryName };
       await axios.post("http://localhost:5005/api/categories", requestBody);
 
-      setCategoryName("");
+      setCategoryName("New Catergory");
       setErrorMessage(undefined);
       refreshCategories();
     } catch (error) {

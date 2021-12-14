@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function TaskDetailsPage() {
-  const [task, setTasks] = useState([]);
+  const [task, setTask] = useState([]);
   const [taskName, setTaskName] = useState("");
   const [status, setStatus] = useState("");
   const [deadLine, setDeadLine] = useState("");
@@ -12,40 +12,82 @@ function TaskDetailsPage() {
   const { taskId } = useParams();
   const navigate = useNavigate();
 
-  const getTask = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:5005/api/tasks/" + taskId
-      );
-      setTasks(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleSubmit = async () => {
-    try {
-      const requestBody = { taskName, status, deadLine, description };
-      await axios.put("http://localhost:5005/tasks/" + taskId, { requestBody });
-
-      navigate("/tasks/" + taskId);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    getTask();
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5005/api/tasks/" + taskId
+        );
+        const oneTask = response.data;
+
+        setTask(oneTask);
+        setTaskName(oneTask.taskName);
+        setStatus(oneTask.status);
+        setDeadLine(oneTask.deadLine);
+        setDescription(oneTask.description);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
   }, []);
+
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      await axios.put("http://localhost:5005/api/tasks/" + taskId, {
+        taskName,
+        status,
+        deadLine,
+        description,
+      });
+
+      setTaskName("");
+      setStatus("");
+      setDeadLine("");
+      setDescription("");
+
+      navigate("/categories/" + task.category);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
       <h1>Task Details Page</h1>
       <form onSubmit={handleSubmit}>
-        <p>{task.taskName}</p>
-        <p>{task.status}</p>
-        <p>{task.deadLine}</p>
-        <p>{task.description}</p>
+        <label>{task.taskName}</label>
+        <input
+          type="text"
+          name="taskName"
+          value={taskName}
+          onChange={(e) => setTaskName(e.target.value)}
+        />
+
+        <label>{task.status}</label>
+        <input
+          type="text"
+          name="status"
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
+        />
+        <label>{task.deadLine}</label>
+        <input
+          type="text"
+          name="deadLine"
+          value={deadLine}
+          onChange={(e) => setDeadLine(e.target.value)}
+        />
+        <label>{task.description}</label>
+        <input
+          type="text"
+          name="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+
+        <button type="submit">Edit Task</button>
       </form>
     </div>
   );

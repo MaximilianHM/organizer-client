@@ -52,13 +52,41 @@ function App() {
           }
         />
 
-        <Route path="/categories" element={<CategoryListPage />} />
+        <Route
+          path="/categories"
+          element={
+            <IsPrivate>
+              <CategoryListPage />
+            </IsPrivate>
+          }
+        />
 
-        <Route path="/categories/:categoryId" element={<TaskListPage />} />
+        <Route
+          path="/categories/:categoryId"
+          element={
+            <IsPrivate>
+              <TaskListPage />
+            </IsPrivate>
+          }
+        />
 
-        <Route path="/tasks/:taskId" element={<TaskDetailsPage />} />
+        <Route
+          path="/tasks/:taskId"
+          element={
+            <IsPrivate>
+              <TaskDetailsPage />
+            </IsPrivate>
+          }
+        />
 
-        <Route path="*" element={<ErrorPage />} />
+        <Route
+          path="*"
+          element={
+            <IsPrivate>
+              <ErrorPage />
+            </IsPrivate>
+          }
+        />
       </Routes>
     </div>
   );
