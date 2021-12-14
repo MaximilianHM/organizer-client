@@ -15,6 +15,7 @@ import IsAnon from "./components/IsAnon/IsAnon";
 import CategoryListPage from "./pages/CategoryListPage/CategoryListPage";
 import TaskListPage from "./pages/TaskListPage/TaskListPage";
 import TaskDetailsPage from "./pages/TaskDetailsPage/TaskDetailsPage";
+import EditProfilePage from "./pages/EditProfilePage/EditProfilePage";
 
 function App() {
   return (
@@ -29,6 +30,16 @@ function App() {
             <IsPrivate>
               {" "}
               <ProfilePage />{" "}
+            </IsPrivate>
+          }
+        />
+
+        <Route
+          path="/profile/edit"
+          element={
+            <IsPrivate>
+              {" "}
+              <EditProfilePage />{" "}
             </IsPrivate>
           }
         />

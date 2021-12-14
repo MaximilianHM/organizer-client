@@ -5,18 +5,25 @@ import axios from "axios";
 function ProfilePage() {
   const [profile, setProfile] = useState([]);
 
-  const getProfileInfo = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:5005/api/users/current"
-      );
-      setProfile(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
+    const getProfileInfo = async () => {
+      try {
+        const storedToken = localStorage.getItem("authToken");
+        if (storedToken) {
+          const response = await axios.get(
+            "http://localhost:5005/api/users/current",
+            {
+              headers: { Authorization: `Bearer ${storedToken}` },
+            }
+          );
+          console.log(response.data);
+          setProfile(response.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     getProfileInfo();
   }, []);
 
