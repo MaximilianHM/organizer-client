@@ -4,6 +4,8 @@ import authService from "../services/auth.service";
 
 const AuthContext = createContext();
 
+const apiURL = process.env.REACT_APP_SERVER_URL;
+
 function AuthProviderWrapper({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
@@ -16,9 +18,13 @@ function AuthProviderWrapper({ children }) {
       const storedToken = localStorage.getItem("authToken");
 
       if (storedToken) {
-        const response = await axios.get("http://localhost:5005/auth/verify", {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        });
+        const response = await axios.get(
+          // "http://localhost:5005/auth/verify",
+          `${apiURL}/auth/verify`,
+          {
+            headers: { Authorization: `Bearer ${storedToken}` },
+          }
+        );
 
         // or with a service
         // const response = await authService.verify();

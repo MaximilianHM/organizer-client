@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+const apiURL = process.env.REACT_APP_SERVER_URL;
+
 function ProfilePage() {
   const [profile, setProfile] = useState([]);
 
@@ -11,7 +13,8 @@ function ProfilePage() {
         const storedToken = localStorage.getItem("authToken");
         if (storedToken) {
           const response = await axios.get(
-            "http://localhost:5005/api/users/current",
+            // "http://localhost:5005/api/users/current",
+            `${apiURL}/api/users/current`,
             {
               headers: { Authorization: `Bearer ${storedToken}` },
             }
@@ -32,7 +35,7 @@ function ProfilePage() {
       <h1>Profile Page</h1>
       <label>Name: {profile.name}</label>
       <label>E-mail: {profile.email}</label>
-      <img src={profile.image} alt="Profile" />
+      <img style={{ width: "50px" }} src={profile.image} alt="Profile" />
       <Link to="/profile/edit">
         <button>Edit Profile</button>
       </Link>

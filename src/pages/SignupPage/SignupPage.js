@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 import authService from "../../services/auth.service";
 
+const apiURL = process.env.REACT_APP_SERVER_URL;
+
 function SignupPage(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,17 +24,17 @@ function SignupPage(props) {
       // Create an object representing the request body
       const requestBody = { email, password, name };
 
-      const authToken = localStorage.getItem('authToken');
+      const authToken = localStorage.getItem("authToken");
       await axios.post(
-        'http://localhost:5005/auth/signup',
+        // 'http://localhost:5005/auth/signup',
+        `${apiURL}/auth/signup`,
         requestBody,
-        { headers: { Authorization: `Bearer ${authToken}`} }
-      )
+        { headers: { Authorization: `Bearer ${authToken}` } }
+      );
 
       // or with a service
       // await authService.signup(requestBody);
 
-      
       // If the request is successful navigate to login page
       navigate("/login");
     } catch (error) {

@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+const apiURL = process.env.REACT_APP_SERVER_URL;
+
 function EditProfilePage() {
   const [profile, setProfile] = useState([]);
   const [name, setName] = useState("");
@@ -14,7 +16,8 @@ function EditProfilePage() {
         const storedToken = localStorage.getItem("authToken");
         if (storedToken) {
           const response = await axios.get(
-            "http://localhost:5005/api/users/current",
+            // "http://localhost:5005/api/users/current",
+            `${apiURL}/api/users/current`,
             {
               headers: { Authorization: `Bearer ${storedToken}` },
             }

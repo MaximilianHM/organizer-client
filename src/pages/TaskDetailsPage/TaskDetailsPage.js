@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const apiURL = process.env.REACT_APP_SERVER_URL;
+
 function TaskDetailsPage() {
   const [task, setTask] = useState([]);
   const [taskName, setTaskName] = useState("");
@@ -16,7 +18,9 @@ function TaskDetailsPage() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5005/api/tasks/" + taskId
+          // "http://localhost:5005/api/tasks/"
+          `${apiURL}/api/tasks/`,
+          +taskId
         );
         const oneTask = response.data;
 
@@ -35,12 +39,16 @@ function TaskDetailsPage() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      await axios.put("http://localhost:5005/api/tasks/" + taskId, {
-        taskName,
-        status,
-        deadLine,
-        description,
-      });
+      await axios.put(
+        // "http://localhost:5005/api/tasks/"
+        `${apiURL}/api/tasks/` + taskId,
+        {
+          taskName,
+          status,
+          deadLine,
+          description,
+        }
+      );
 
       setTaskName("");
       setStatus("");

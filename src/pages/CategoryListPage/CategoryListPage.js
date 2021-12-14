@@ -2,18 +2,21 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import AddCategory from "./../../components/AddCategory/AddCategory";
-import { useContext } from "react";
-import { AuthContext } from "../../context/auth.context";
+
+const apiURL = process.env.REACT_APP_SERVER_URL;
 
 function CategoryListPage() {
+  const [deleted, setdeleted] = useState(false);
   const [categories, setCategories] = useState([]);
   const [deletedCategory, setDeletedCategory] = useState([]);
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
 
   const getAllCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:5005/api/categories");
+      const response = await axios.get(
+        // "http://localhost:5005/api/categories"
+        `${apiURL}/api/categories`
+      );
       setCategories(response.data);
     } catch (error) {
       console.log(error);
@@ -23,25 +26,33 @@ function CategoryListPage() {
   const handleDelete = async (categoryId) => {
     try {
       const response = await axios.delete(
-        "http://localhost:5005/api/categories/" + categoryId
+        // "http://localhost:5005/api/categories/"
+        `${apiURL}/api/categories` + categoryId
       );
+      console.log(response);
       const deleteTask = response.data.tasks;
 
       const categoryToDelete = await deleteTask.filter((oneCategory) => {
         return oneCategory._id !== categoryId;
       });
       setDeletedCategory(categoryToDelete);
-      getAllCategories();
+      setdeleted(!deleted);
+      /*   getAllCategories(); */
       navigate("/categories/" + categoryId);
     } catch (error) {
       console.log(error);
     }
   };
 
+  console.log(categories);
+
   useEffect(() => {
     getAllCategories();
-    handleDelete();
   }, []);
+
+  useEffect(() => {
+    getAllCategories();
+  }, [deletedCategory]);
 
   return (
     <>
@@ -51,11 +62,9 @@ function CategoryListPage() {
         {categories.map((oneCategory) => {
           return (
             <div key={oneCategory._id} className="CategoryField">
-              {user && (
-                <Link to={"/categories/" + oneCategory._id}>
-                  <h4>{oneCategory.categoryName}</h4>
-                </Link>
-              )}
+              <Link to={"/categories/" + oneCategory._id}>
+                <h4>{oneCategory.categoryName}</h4>
+              </Link>
               <button>Edit</button>
               <button onClick={() => handleDelete(oneCategory._id)}>
                 Delete

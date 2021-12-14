@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const apiURL = process.env.REACT_APP_SERVER_URL;
+
 function EditCategory() {
   const [category, setCategory] = useState([]);
 
@@ -13,9 +15,13 @@ function EditCategory() {
     try {
       e.preventDefault();
 
-      await axios.put("http://localhost:5005/api/category/" + category._id, {
-        category,
-      });
+      await axios.put(
+        // "http://localhost:5005/api/category/"
+        apiURL + "/api/category/" + category._id,
+        {
+          category,
+        }
+      );
 
       setCategory("");
 

@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
+const apiURL = process.env.REACT_APP_SERVER_URL;
+
 function AddTask({ refreshTasks }) {
   const [taskName, setTaskName] = useState("New Task");
   const [status, setStatus] = useState("In progress");
@@ -26,7 +28,11 @@ function AddTask({ refreshTasks }) {
         description,
         categoryId,
       };
-      await axios.post("http://localhost:5005/api/tasks", requestBody);
+      await axios.post(
+        `${apiURL}/api/tasks`,
+        // "http://localhost:5005/api/tasks"
+        requestBody
+      );
 
       setTaskName("New Task");
       setStatus("In progress");

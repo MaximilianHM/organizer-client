@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 
 import AddTask from "./../../components/AddTask/AddTask";
 
+const apiURL = process.env.REACT_APP_SERVER_URL;
+
 function TaskListPage() {
   const [tasks, setTasks] = useState([]);
   const [category, setCategory] = useState([]);
@@ -16,7 +18,8 @@ function TaskListPage() {
   const getAllTasks = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5005/api/categories/" + categoryId
+        // "http://localhost:5005/api/categories/"
+        `${apiURL}/api/categories` + categoryId
       );
       const allTasks = response.data.tasks;
       const oneCategory = response.data;
@@ -31,7 +34,8 @@ function TaskListPage() {
   const handleDelete = async (taskId) => {
     try {
       const response = await axios.delete(
-        "http://localhost:5005/api/tasks/" + taskId
+        // "http://localhost:5005/api/tasks/"
+        `${apiURL}/api/tasks` + taskId
       );
       console.log(response);
       const deleteTask = response.data.tasks;
@@ -41,7 +45,7 @@ function TaskListPage() {
       });
       setDeletedTask(taskToDelete);
       getAllTasks();
-      navigate("/categories/" + categoryId + 1111111111);
+      navigate("/categories/" + categoryId);
     } catch (error) {
       console.log(error);
     }

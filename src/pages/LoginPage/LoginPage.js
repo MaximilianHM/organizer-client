@@ -7,6 +7,8 @@ import { AuthContext } from "../../context/auth.context";
 
 import authService from "../../services/auth.service";
 
+const apiURL = process.env.REACT_APP_SERVER_URL;
+
 function LoginPage(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,7 +29,8 @@ function LoginPage(props) {
 
       const authToken = localStorage.getItem("authToken");
       const response = await axios.post(
-        "http://localhost:5005/auth/login",
+        // "http://localhost:5005/auth/login",
+        `${apiURL}/auth/login`,
         requestBody,
         { headers: { Authorization: `Bearer ${authToken}` } }
       );
@@ -38,7 +41,6 @@ function LoginPage(props) {
       // Save the token and set the user as logged in ...
       const token = response.data.authToken;
       logInUser(token);
-
       navigate("/");
     } catch (error) {
       // If the request resolves with an error, set the error message in the state
