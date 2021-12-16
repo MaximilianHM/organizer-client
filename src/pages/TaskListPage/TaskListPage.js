@@ -10,16 +10,22 @@ const apiURL = process.env.REACT_APP_SERVER_URL;
 function TaskListPage() {
   const [tasks, setTasks] = useState([]);
   const [category, setCategory] = useState([]);
-  const [deletedTask, setDeletedTask] = useState([]);
+  const [deletedTask, setDeletedTask] = useState(false);
 
   const { categoryId } = useParams();
   const navigate = useNavigate();
 
   const getAllTasks = async () => {
     try {
+      const authToken = localStorage.getItem("authToken");
       const response = await axios.get(
         // "http://localhost:5005/api/categories/"
-        `${apiURL}/api/categories` + categoryId
+        `${apiURL}/api/categories/` + categoryId,
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        }
       );
       const allTasks = response.data.tasks;
       const oneCategory = response.data;
@@ -33,34 +39,89 @@ function TaskListPage() {
 
   const handleDelete = async (taskId) => {
     try {
-      const response = await axios.delete(
+      await axios.delete(
         // "http://localhost:5005/api/tasks/"
-        `${apiURL}/api/tasks` + taskId
+        `${apiURL}/api/tasks/` + taskId
       );
-      console.log(response);
-      const deleteTask = response.data.tasks;
 
-      const taskToDelete = await deleteTask.filter((oneTask) => {
-        return oneTask._id !== taskId;
-      });
-      setDeletedTask(taskToDelete);
-      getAllTasks();
+      setDeletedTask(!false);
+
       navigate("/categories/" + categoryId);
     } catch (error) {
       console.log(error);
     }
   };
 
+  // useEffect(() => {
+  //   getAllTasks();
+  // }, []);
+
   useEffect(() => {
     getAllTasks();
-    handleDelete();
-  }, []);
+  }, [deletedTask]);
+
+  const handleSortbyAlpha = async () => {
+    const newArr = [...tasks];
+    newArr.sort(function (a, b) {
+      if (a.taskName > b.taskName) {
+        return -1;
+      }
+      if (a.taskName < b.taskName) {
+        return 1;
+      }
+      return 0;
+    });
+    setTasks([...newArr]);
+  };
+
+  const handleSortbyDeadLine = async () => {
+    const newArr = [...tasks];
+    newArr.sort(function (a, b) {
+      if (a.deadLine < b.deadLine) {
+        return -1;
+      }
+      if (a.deadLine > b.deadLine) {
+        return 1;
+      }
+      return 0;
+    });
+    setTasks([...newArr]);
+  };
+
+  const handleSortbyDone = async () => {
+    const newArr = [...tasks];
+    newArr.sort(function (a) {
+      if (a.status === "Done") {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+    setTasks([...newArr]);
+  };
+
+  const handleSortbyInProgress = async () => {
+    const newArr = [...tasks];
+    newArr.sort(function (a) {
+      if (a.status === "In progress") {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+    setTasks([...newArr]);
+  };
 
   return (
     <div className="TasksListPage">
       <h1>Task List Page</h1>
       <AddTask refreshTasks={getAllTasks} />
       <h1>{category.categoryName}</h1>
+      <button onClick={handleSortbyAlpha}>Sort by name</button>
+      <button onClick={handleSortbyDone}>Sort by Done</button>
+      <button onClick={handleSortbyInProgress}>Sort by In Progress</button>
+
+      <button onClick={handleSortbyDeadLine}>Sort by Deadline</button>
 
       {tasks.map((oneTask) => {
         return (

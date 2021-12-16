@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 
 const apiURL = process.env.REACT_APP_SERVER_URL;
@@ -20,14 +20,20 @@ function AddCategory({ refreshCategories }) {
         categoryName,
         usernameId: user._id,
       };
+
+      const authToken = localStorage.getItem("authToken");
       await axios.post(
         `${apiURL}/api/categories`,
         // "http://localhost:5005/api/categories"
-        requestBody
+        requestBody,
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        }
       );
 
       setCategoryName("New Catergory");
-      // setCreator(creatorId);
       setErrorMessage(undefined);
       refreshCategories();
     } catch (error) {

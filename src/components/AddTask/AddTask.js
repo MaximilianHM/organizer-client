@@ -28,6 +28,7 @@ function AddTask({ refreshTasks }) {
         description,
         categoryId,
       };
+
       await axios.post(
         `${apiURL}/api/tasks`,
         // "http://localhost:5005/api/tasks"
@@ -56,17 +57,24 @@ function AddTask({ refreshTasks }) {
           value={taskName}
           onChange={handleTaskName}
         />
+
         <label>Choose the status</label>
-        <input
-          name="status"
-          type="text"
-          value={status}
-          onChange={handleStatus}
-        />
+        <select name="status">
+          <option onChange={handleStatus} value="In Progres">
+            In Progres
+          </option>
+          <option onChange={handleStatus} value="Done">
+            Concluded
+          </option>
+          <option onChange={handleStatus} value="Canceled">
+            Canceled
+          </option>
+        </select>
+
         <label>Choose a task deadline</label>
         <input
           name="deadLine"
-          type="text"
+          type="date"
           value={deadLine}
           onChange={handleDeadLine}
         />

@@ -25,7 +25,7 @@ function EditCategory() {
 
       setCategory("");
 
-      navigate("/categories/" + category._id);
+      navigate("/categories");
     } catch (error) {
       console.log(error);
     }

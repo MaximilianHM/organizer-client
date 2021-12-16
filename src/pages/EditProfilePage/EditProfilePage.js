@@ -10,6 +10,8 @@ function EditProfilePage() {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
+  // console.log("profile.name :>> ", profile.name[0]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -67,7 +69,7 @@ function EditProfilePage() {
         />
         <label>E-mail:</label>
         <input
-          type="text"
+          type="email"
           name="name"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -76,6 +78,7 @@ function EditProfilePage() {
 
         <button type="submit">Edit Profile</button>
       </form>
+      <button onClick={() => navigate(-1)}>Back</button>
     </div>
   );
 }

@@ -19,8 +19,7 @@ function TaskDetailsPage() {
       try {
         const response = await axios.get(
           // "http://localhost:5005/api/tasks/"
-          `${apiURL}/api/tasks/`,
-          +taskId
+          `${apiURL}/api/tasks/` + taskId
         );
         const oneTask = response.data;
 
@@ -65,7 +64,7 @@ function TaskDetailsPage() {
     <div>
       <h1>Task Details Page</h1>
       <form onSubmit={handleSubmit}>
-        <label>{task.taskName}</label>
+        <label>{taskName}</label>
         <input
           type="text"
           name="taskName"
@@ -73,21 +72,22 @@ function TaskDetailsPage() {
           onChange={(e) => setTaskName(e.target.value)}
         />
 
-        <label>{task.status}</label>
+        <label>{status}</label>
+
+        <select name="status" onChange={(e) => setStatus(e.target.value)}>
+          <option value="In Progress">In Progres</option>
+          <option value="Done">Concluded</option>
+          <option value="Canceled">Canceled</option>
+        </select>
+
+        <label>{deadLine}</label>
         <input
-          type="text"
-          name="status"
-          value={status}
-          onChange={(e) => setStatus(e.target.value)}
-        />
-        <label>{task.deadLine}</label>
-        <input
-          type="text"
+          type="date"
           name="deadLine"
           value={deadLine}
           onChange={(e) => setDeadLine(e.target.value)}
         />
-        <label>{task.description}</label>
+        <label>{description}</label>
         <input
           type="text"
           name="description"
@@ -97,6 +97,7 @@ function TaskDetailsPage() {
 
         <button type="submit">Edit Task</button>
       </form>
+      <button onClick={() => navigate(-1)}>Back</button>
     </div>
   );
 }

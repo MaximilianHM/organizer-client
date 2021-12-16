@@ -2,11 +2,9 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import authService from "../../services/auth.service";
-
 const apiURL = process.env.REACT_APP_SERVER_URL;
 
-function SignupPage(props) {
+function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -22,7 +20,12 @@ function SignupPage(props) {
     try {
       e.preventDefault();
       // Create an object representing the request body
-      const requestBody = { email, password, name };
+      const requestBody = {
+        email,
+        password,
+        name,
+        image: name[0].toUpperCase(),
+      };
 
       const authToken = localStorage.getItem("authToken");
       await axios.post(

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -6,6 +6,7 @@ const apiURL = process.env.REACT_APP_SERVER_URL;
 
 function ProfilePage() {
   const [profile, setProfile] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getProfileInfo = async () => {
@@ -19,7 +20,6 @@ function ProfilePage() {
               headers: { Authorization: `Bearer ${storedToken}` },
             }
           );
-          console.log(response.data);
           setProfile(response.data);
         }
       } catch (error) {
@@ -39,6 +39,7 @@ function ProfilePage() {
       <Link to="/profile/edit">
         <button>Edit Profile</button>
       </Link>
+      <button onClick={() => navigate(-1)}>Back</button>
     </div>
   );
 }
