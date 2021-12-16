@@ -44,7 +44,7 @@ function TaskListPage() {
         `${apiURL}/api/tasks/` + taskId
       );
 
-      setDeletedTask(!false);
+      setDeletedTask(!deletedTask);
 
       navigate("/categories/" + categoryId);
     } catch (error) {
@@ -52,13 +52,12 @@ function TaskListPage() {
     }
   };
 
-  // useEffect(() => {
-  //   getAllTasks();
-  // }, []);
-
   useEffect(() => {
     getAllTasks();
   }, [deletedTask]);
+  // useEffect(() => {
+  //   getAllTasks();
+  // }, []);
 
   const handleSortbyAlpha = async () => {
     const newArr = [...tasks];

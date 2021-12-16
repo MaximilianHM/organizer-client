@@ -64,7 +64,7 @@ function AddTask({ refreshTasks }) {
             In Progres
           </option>
           <option onChange={handleStatus} value="Done">
-            Concluded
+            Done
           </option>
           <option onChange={handleStatus} value="Canceled">
             Canceled

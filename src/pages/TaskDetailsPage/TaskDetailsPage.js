@@ -76,7 +76,7 @@ function TaskDetailsPage() {
 
         <select name="status" onChange={(e) => setStatus(e.target.value)}>
           <option value="In Progress">In Progres</option>
-          <option value="Done">Concluded</option>
+          <option value="Done">Done</option>
           <option value="Canceled">Canceled</option>
         </select>
 

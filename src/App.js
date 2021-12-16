@@ -17,10 +17,13 @@ import TaskListPage from "./pages/TaskListPage/TaskListPage";
 import TaskDetailsPage from "./pages/TaskDetailsPage/TaskDetailsPage";
 import EditProfilePage from "./pages/EditProfilePage/EditProfilePage";
 
+// import Sidebar from "./components/Sidebar/Sidebar";
+
 function App() {
   return (
     <div className="App">
       <Navbar />
+      {/* <Sidebar /> */}
       <Routes>
         <Route path="/" element={<HomePage />} />
 

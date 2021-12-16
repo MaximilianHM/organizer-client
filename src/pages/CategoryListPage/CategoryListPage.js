@@ -58,9 +58,10 @@ function CategoryListPage() {
   // console.log("editedCat ", editedCat);
   const handleEdit = async (categoryId) => {
     try {
-      // const categoryEdited = editedCat.map((oneEditedCategory) => {
-      //   return oneEditedCategory._id;
-      // });
+      const categoryEdited = editedCat.map((oneEditedCategory) => {
+        return oneEditedCategory._id;
+      });
+      console.log("categoryEdited :>> ", categoryEdited);
 
       const authToken = localStorage.getItem("authToken");
       await axios.put(
