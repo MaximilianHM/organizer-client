@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBeer } from "react-icons/fa";
 import ClockTime from "../../components/ClockTime/ClockTime";
+import "./HomePage.css";
 
 function HomePage() {
   // const [hide, setHide] = useState("");
@@ -18,18 +19,11 @@ function HomePage() {
   // };
 
   return (
-    <>
-      <ClockTime />
-      <button onClick={"handhle"} className="myDIV">
-        Hello
-      </button>
-      <Link to="/categories">
-        <h3>
-          {" "}
-          Lets go for a <FaBeer />?{" "}
-        </h3>
-      </Link>
-    </>
+    <div className="homepagebg">
+      <img src="./src/bg-img.jpg" alt="" />
+      <h1>Manage your time, organize yourself</h1>
+      <p>Create a category and then create your tasks!</p>
+    </div>
   );
 }
 

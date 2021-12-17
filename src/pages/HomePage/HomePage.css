@@ -15,3 +15,20 @@
   font-weight: bold;
   font-size: 1.8em;
 }
+
+.homepagebg {
+  background-image: url("./src/bg-img.jpg");
+  background-repeat: no-repeat;
+  background-size: auto;
+  height: 800px;
+  font-weight: bold;
+}
+
+.homepagebg h1 {
+  margin-top: 250px;
+  opacity: 1;
+}
+
+.homepagebg p {
+  font-size: 1.2rem;
+}
