@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "./ProfilePage.css";
 
 const apiURL = process.env.REACT_APP_SERVER_URL;
 
@@ -31,14 +32,30 @@ function ProfilePage() {
   }, []);
 
   return (
-    <div>
-      <h1>Profile Page</h1>
-      <label>Name: {profile.name}</label>
-      <label>E-mail: {profile.email}</label>
-      <Link to="/profile/edit">
-        <button>Edit Profile</button>
-      </Link>
-      <button onClick={() => navigate(-1)}>Back</button>
+    <div className="card">
+      <div className="text">
+        <label
+          style={{
+            height: "100px",
+            width: "100px",
+            borderRadius: "100%",
+            fontSize: "70px",
+          }}
+          className="profile-img"
+        >
+          {" "}
+          {profile.image}
+        </label>
+
+        <h4>Name: {profile.name}</h4>
+        <label>E-mail: {profile.email}</label>
+        <div>
+          <Link to="/profile/edit">
+            <button>Edit Profile</button>
+          </Link>
+          <button onClick={() => navigate(-1)}>Back</button>
+        </div>
+      </div>
     </div>
   );
 }

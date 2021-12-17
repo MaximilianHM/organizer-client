@@ -123,7 +123,7 @@ function TaskListPage() {
 
   return (
     <div className="TasksListPage">
-      <h1>Task List Page</h1>
+      <h1>Your tasks from {category.categoryName}</h1>
       <AddTask refreshTasks={getAllTasks} />
       <button onClick={() => navigate(-1)}>
         <FaArrowLeft />

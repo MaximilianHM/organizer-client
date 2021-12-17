@@ -54,7 +54,7 @@ function AddCategory({ refreshCategories }) {
           onChange={handleCategoryName}
         />
         <button>
-          <FaRegCalendarPlus />
+          <FaRegCalendarPlus /> Add category
         </button>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
       </form>

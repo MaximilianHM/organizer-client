@@ -63,9 +63,9 @@ function TaskDetailsPage() {
 
   return (
     <div>
-      <h1>Task Details Page</h1>
-      <form onSubmit={handleSubmit}>
-        <label>{taskName}</label>
+      <h1>Edit your tasks</h1>
+      <form className="AddTask" onSubmit={handleSubmit}>
+        <label>Task name</label>
         <input
           type="text"
           name="taskName"
@@ -73,7 +73,7 @@ function TaskDetailsPage() {
           onChange={(e) => setTaskName(e.target.value)}
         />
 
-        <label>{status}</label>
+        <label>Progress status:</label>
 
         <select name="status" onChange={(e) => setStatus(e.target.value)}>
           <option value="In Progress">In Progres</option>
@@ -88,7 +88,7 @@ function TaskDetailsPage() {
           value={deadLine}
           onChange={(e) => setDeadLine(e.target.value)}
         />
-        <label>{description}</label>
+        <label>Description:</label>
         <input
           type="text"
           name="description"

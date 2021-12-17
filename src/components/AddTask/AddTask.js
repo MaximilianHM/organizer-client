@@ -90,7 +90,7 @@ function AddTask({ refreshTasks }) {
           />
         </div>
         <button>
-          <FaRegCalendarPlus />
+          <FaRegCalendarPlus /> Add task
         </button>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
       </form>

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "../ProfilePage/ProfilePage.css";
 
 const apiURL = process.env.REACT_APP_SERVER_URL;
 
@@ -57,7 +58,7 @@ function EditProfilePage() {
   };
 
   return (
-    <div>
+    <div className="card">
       <form onSubmit={handleSubmit}>
         <h1>EditProfile Page</h1>
         <label>Name:</label>
@@ -75,10 +76,10 @@ function EditProfilePage() {
           onChange={(e) => setEmail(e.target.value)}
         />
         {/* <img src={profile.image} alt="Profile" /> */}
-
+        <br />
         <button type="submit">Edit Profile</button>
+        <button onClick={() => navigate(-1)}>Back</button>
       </form>
-      <button onClick={() => navigate(-1)}>Back</button>
     </div>
   );
 }

@@ -5,3 +5,7 @@
 .TableTask {
   padding-left: 350px;
 }
+
+table {
+  border-collapse: collapse;
+}
