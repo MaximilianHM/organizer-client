@@ -35,7 +35,6 @@ function ProfilePage() {
       <h1>Profile Page</h1>
       <label>Name: {profile.name}</label>
       <label>E-mail: {profile.email}</label>
-      <img style={{ width: "50px" }} src={profile.image} alt="Profile" />
       <Link to="/profile/edit">
         <button>Edit Profile</button>
       </Link>

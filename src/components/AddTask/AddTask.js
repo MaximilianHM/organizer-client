@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { FaRegCalendarPlus } from "react-icons/fa";
 
 const apiURL = process.env.REACT_APP_SERVER_URL;
 
@@ -48,46 +49,49 @@ function AddTask({ refreshTasks }) {
   return (
     <div className="AddTask">
       <h3>Add a Task</h3>
-
       <form onSubmit={handleSubmit}>
-        <label>Choose a task name</label>
-        <input
-          name="taskName"
-          type="text"
-          value={taskName}
-          onChange={handleTaskName}
-        />
+        <div>
+          <label>Choose a task name</label>
+          <input
+            name="taskName"
+            type="text"
+            value={taskName}
+            onChange={handleTaskName}
+          />
 
-        <label>Choose the status</label>
-        <select name="status">
-          <option onChange={handleStatus} value="In Progres">
-            In Progres
-          </option>
-          <option onChange={handleStatus} value="Done">
-            Done
-          </option>
-          <option onChange={handleStatus} value="Canceled">
-            Canceled
-          </option>
-        </select>
+          <label>Choose the status</label>
+          <select name="status">
+            <option onChange={handleStatus} value="In Progres">
+              In Progres
+            </option>
+            <option onChange={handleStatus} value="Done">
+              Done
+            </option>
+            <option onChange={handleStatus} value="Canceled">
+              Canceled
+            </option>
+          </select>
+        </div>
+        <div>
+          <label>Choose a task deadline</label>
+          <input
+            name="deadLine"
+            type="date"
+            value={deadLine}
+            onChange={handleDeadLine}
+          />
 
-        <label>Choose a task deadline</label>
-        <input
-          name="deadLine"
-          type="date"
-          value={deadLine}
-          onChange={handleDeadLine}
-        />
-
-        <label>Description</label>
-        <textarea
-          name="description"
-          type="text"
-          value={description}
-          onChange={handleDescription}
-        />
-
-        <button>Add new task</button>
+          <label>Description</label>
+          <textarea
+            name="description"
+            type="text"
+            value={description}
+            onChange={handleDescription}
+          />
+        </div>
+        <button>
+          <FaRegCalendarPlus />
+        </button>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
       </form>
     </div>

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
+import { FaRegCalendarPlus } from "react-icons/fa";
 
 const apiURL = process.env.REACT_APP_SERVER_URL;
 
@@ -52,7 +53,9 @@ function AddCategory({ refreshCategories }) {
           value={categoryName}
           onChange={handleCategoryName}
         />
-        <button>Add new category</button>
+        <button>
+          <FaRegCalendarPlus />
+        </button>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
       </form>
     </div>

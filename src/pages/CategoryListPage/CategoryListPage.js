@@ -4,13 +4,14 @@ import axios from "axios";
 import AddCategory from "./../../components/AddCategory/AddCategory";
 // import EditCategory from "./../../components/EditCategory/EditCategory";
 import { AuthContext } from "../../context/auth.context";
+import { FaSortAlphaUp, FaTrashAlt } from "react-icons/fa";
 
 const apiURL = process.env.REACT_APP_SERVER_URL;
 
 function CategoryListPage() {
   const [categories, setCategories] = useState([]);
   const [deleted, setDeleted] = useState(false);
-  const [editedCat, setEditedCat] = useState("");
+  // const [editedCat, setEditedCat] = useState("");
   // const [idCat, setIdCat] = useState("");
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
@@ -28,7 +29,7 @@ function CategoryListPage() {
         }
       );
       setCategories(response.data);
-      setEditedCat(response.data);
+      // setEditedCat(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -56,56 +57,56 @@ function CategoryListPage() {
   };
 
   // console.log("editedCat ", editedCat);
-  const handleEdit = async (categoryId) => {
-    try {
-      const categoryEdited = editedCat.map((oneEditedCategory) => {
-        return oneEditedCategory._id;
-      });
-      console.log("categoryEdited :>> ", categoryEdited);
+  // const handleEdit = async (categoryId) => {
+  //   try {
+  //     const categoryEdited = editedCat.map((oneEditedCategory) => {
+  //       return oneEditedCategory._id;
+  //     });
+  //     console.log("categoryEdited :>> ", categoryEdited);
 
-      const authToken = localStorage.getItem("authToken");
-      await axios.put(
-        // "http://localhost:5005/api/category/"
-        apiURL + "/api/category/" + categoryId,
-        {
-          categoryName: editedCat,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${authToken}`,
-          },
-        }
-      );
+  //     const authToken = localStorage.getItem("authToken");
+  //     await axios.put(
+  //       // "http://localhost:5005/api/category/"
+  //       apiURL + "/api/category/" + categoryId,
+  //       {
+  //         categoryName: editedCat,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${authToken}`,
+  //         },
+  //       }
+  //     );
 
-      setEditedCat("");
+  //     setEditedCat("");
 
-      navigate("/categories");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleSortbyAlpha = async () => {
-    const newArr = [...categories];
-    newArr.sort(function (a, b) {
-      if (a.categoryName > b.categoryName) {
-        return -1;
-      }
-      if (a.categoryName < b.categoryName) {
-        return 1;
-      }
-      return 0;
-    });
-    setCategories([...newArr]);
-  };
-
-  useEffect(() => {
-    getAllCategories();
-  }, []);
+  //     navigate("/categories");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   getAllCategories();
+  // }, []);
 
   useEffect(() => {
     getAllCategories();
   }, [deleted]);
+
+  const handleSortbyAlpha = async () => {
+    const newArr = [...categories];
+    newArr.sort(function (a, b) {
+      if (a.categoryName < b.categoryName) {
+        return -1;
+      }
+      if (a.categoryName > b.categoryName) {
+        return 1;
+      }
+      return 0;
+    });
+    // newArr.sort();
+    setCategories([...newArr]);
+  };
 
   // useEffect(() => {
   //   getAllCategories();
@@ -113,26 +114,31 @@ function CategoryListPage() {
 
   return (
     <>
-      <div className="CategoriesListPage">
+      {/* <div className="CategoriesListPage"> */}
+      <div className="sidenav">
         <h1>Categories</h1>
         <AddCategory refreshCategories={getAllCategories} />
-        <button onClick={handleSortbyAlpha}>Sort by Category Name</button>
+        <button onClick={handleSortbyAlpha}>
+          <FaSortAlphaUp />
+        </button>
         {categories.map((oneCategory) => {
           return (
-            <div key={oneCategory._id} className="CategoryField">
+            <div key={oneCategory._id} className="categoryField">
               {/* <EditCategory refreshCategories={getAllCategories} /> */}
               {user && (
                 <Link to={"/categories/" + oneCategory._id}>
-                  <h4>{oneCategory.categoryName}</h4>
+                  <p>{oneCategory.categoryName}</p>
                 </Link>
               )}
-              <form onSubmit={() => handleEdit(oneCategory._id)}>
+              {/* <form onSubmit={() => handleEdit(oneCategory._id)}>
                 <input type="text" name="categoryName" />
-                <button>Edit</button>
-              </form>
+                <button>
+                  <FaEdit />
+                </button>
+              </form> */}
 
               <button onClick={() => handleDelete(oneCategory._id)}>
-                Delete
+                <FaTrashAlt />
               </button>
             </div>
           );

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FaSync, FaArrowLeft } from "react-icons/fa";
 
 const apiURL = process.env.REACT_APP_SERVER_URL;
 
@@ -95,9 +96,13 @@ function TaskDetailsPage() {
           onChange={(e) => setDescription(e.target.value)}
         />
 
-        <button type="submit">Edit Task</button>
+        <button type="submit">
+          <FaSync />
+        </button>
       </form>
-      <button onClick={() => navigate(-1)}>Back</button>
+      <button onClick={() => navigate(-1)}>
+        <FaArrowLeft />
+      </button>
     </div>
   );
 }
