@@ -1,16 +1,23 @@
 import { Link } from "react-router-dom";
-
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import "../../index.css";
 
 function Navbar() {
-  // Get the value from the context
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
   return (
     <div>
       <nav className="Navbar">
+        <Link className="logo-image" to="/">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/1584/1584892.png"
+            alt="Timex logo"
+          />{" "}
+          TIMEX
+        </Link>
+
         <Link to="/">
           <button>Home</button>
         </Link>
@@ -32,14 +39,11 @@ function Navbar() {
             </Link>
           </>
         )}
-
-        <div className="profile-img-wrapper">
-          {user && (
-            <Link to="/profile">
-              <p className="profile-img"> {user.image}</p>
-            </Link>
-          )}
-        </div>
+        {user && (
+          <div className="profile-img-wrapper">
+            <Link to="/profile">{user.image}</Link>
+          </div>
+        )}
       </nav>
       {user && <Sidebar />}
     </div>

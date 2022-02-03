@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { FaRegCalendarPlus } from "react-icons/fa";
+import "./AddTask.css";
 
 const apiURL = process.env.REACT_APP_SERVER_URL;
 
@@ -30,11 +31,7 @@ function AddTask({ refreshTasks }) {
         categoryId,
       };
 
-      await axios.post(
-        `${apiURL}/api/tasks`,
-        // "http://localhost:5005/api/tasks"
-        requestBody
-      );
+      await axios.post(`${apiURL}/api/tasks`, requestBody);
 
       setTaskName("New Task");
       setStatus("In progress");
@@ -47,40 +44,45 @@ function AddTask({ refreshTasks }) {
     }
   };
   return (
-    <div className="AddTask">
+    <div className="addform">
       <h3>Add a Task</h3>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Choose a task name</label>
-          <input
-            name="taskName"
-            type="text"
-            value={taskName}
-            onChange={handleTaskName}
-          />
+      <form className="form-flex" onSubmit={handleSubmit}>
+        <div className="row-task">
+          <div className="input-task">
+            <label>Task name</label>
+            <input
+              name="taskName"
+              type="text"
+              value={taskName}
+              onChange={handleTaskName}
+            />
+          </div>
 
-          <label>Choose the status</label>
-          <select name="status">
-            <option onChange={handleStatus} value="In Progres">
-              In Progres
-            </option>
-            <option onChange={handleStatus} value="Done">
-              Done
-            </option>
-            <option onChange={handleStatus} value="Canceled">
-              Canceled
-            </option>
-          </select>
+          <div className="input-task">
+            <label>Status</label>
+            <select name="status">
+              <option onChange={handleStatus} value="In Progres">
+                In Progres
+              </option>
+              <option onChange={handleStatus} value="Done">
+                Done
+              </option>
+              <option onChange={handleStatus} value="Canceled">
+                Canceled
+              </option>
+            </select>
+          </div>
+          <div className="input-task deadline">
+            <label>Deadline</label>
+            <input
+              name="deadLine"
+              type="date"
+              value={deadLine}
+              onChange={handleDeadLine}
+            />
+          </div>
         </div>
-        <div>
-          <label>Choose a task deadline</label>
-          <input
-            name="deadLine"
-            type="date"
-            value={deadLine}
-            onChange={handleDeadLine}
-          />
-
+        <div className="task-description">
           <label>Description</label>
           <textarea
             name="description"

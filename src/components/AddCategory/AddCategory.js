@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import { FaRegCalendarPlus } from "react-icons/fa";
+import "./AddCategory.css";
 
 const apiURL = process.env.REACT_APP_SERVER_URL;
 
@@ -23,16 +24,11 @@ function AddCategory({ refreshCategories }) {
       };
 
       const authToken = localStorage.getItem("authToken");
-      await axios.post(
-        `${apiURL}/api/categories`,
-        // "http://localhost:5005/api/categories"
-        requestBody,
-        {
-          headers: {
-            Authorization: `Bearer ${authToken}`,
-          },
-        }
-      );
+      await axios.post(`${apiURL}/api/categories`, requestBody, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
 
       setCategoryName("New Catergory");
       setErrorMessage(undefined);

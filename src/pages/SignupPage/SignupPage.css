@@ -1,0 +1,43 @@
+.card-body {
+  width: 100%;
+}
+
+.form-card {
+  margin-top: 30px;
+}
+
+.input-form {
+  color: #000;
+  text-align: left;
+}
+
+.form-card h1 {
+  margin-bottom: 10%;
+}
+
+.form-card a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 600;
+}
+
+.form-card p {
+  margin-top: 10%;
+}
+
+.form-card input {
+  width: 100%;
+}
+
+.form-card button:hover {
+  color: #fff;
+  font-weight: 600;
+}
+
+.error-message {
+  text-align: center;
+  color: #fff;
+  font-weight: 600;
+  background-color: tomato;
+  border-radius: 4px;
+}

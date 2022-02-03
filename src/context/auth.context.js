@@ -12,23 +12,13 @@ function AuthProviderWrapper({ children }) {
 
   const verifyStoredToken = async () => {
     try {
-      // Get the stored token from the local storage
       const storedToken = localStorage.getItem("authToken");
 
       if (storedToken) {
-        const response = await axios.get(
-          // "http://localhost:5005/auth/verify",
-          `${apiURL}/auth/verify`,
-          {
-            headers: { Authorization: `Bearer ${storedToken}` },
-          }
-        );
-
-        // or with a service
-        // const response = await authService.verify();
-
-        // If the token is valid, update the state variables
-        const user = response.data; // coming from payload
+        const response = await axios.get(`${apiURL}/auth/verify`, {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        });
+        const user = response.data;
         setIsLoggedIn(true);
         setIsLoading(false);
         setUser(user);
@@ -36,7 +26,6 @@ function AuthProviderWrapper({ children }) {
         setIsLoading(false);
       }
     } catch (error) {
-      // If the token is not validated, or there's another error
       setIsLoggedIn(false);
       setIsLoading(false);
       setUser(null);
@@ -51,7 +40,6 @@ function AuthProviderWrapper({ children }) {
   const logOutUser = () => {
     localStorage.removeItem("authToken");
 
-    // Update state variables
     setIsLoggedIn(false);
     setUser(null);
   };

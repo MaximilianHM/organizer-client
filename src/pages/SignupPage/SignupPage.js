@@ -1,5 +1,15 @@
 import axios from "axios";
 import { useState } from "react";
+import "./SignupPage.css";
+import {
+  Form,
+  FormGroup,
+  Input,
+  Label,
+  Button,
+  Card,
+  CardBody,
+} from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
 
 const apiURL = process.env.REACT_APP_SERVER_URL;
@@ -19,7 +29,6 @@ function SignupPage() {
   const handleSignupSubmit = async (e) => {
     try {
       e.preventDefault();
-      // Create an object representing the request body
       const requestBody = {
         email,
         password,
@@ -35,43 +44,65 @@ function SignupPage() {
         { headers: { Authorization: `Bearer ${authToken}` } }
       );
 
-      // or with a service
-      // await authService.signup(requestBody);
-
-      // If the request is successful navigate to login page
       navigate("/login");
     } catch (error) {
-      // If the request resolves with an error, set the error message in the state
       setErrorMessage("Something went wrong");
     }
   };
 
   return (
-    <div className="SignupPage">
-      <h1>Sign Up</h1>
-
-      <form onSubmit={handleSignupSubmit}>
-        <label>Email:</label>
-        <input type="text" name="email" value={email} onChange={handleEmail} />
-
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
-
-        <label>Name:</label>
-        <input type="text" name="name" value={name} onChange={handleName} />
-
-        <button type="submit">Sign Up</button>
-      </form>
-
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      <p>Already have account?</p>
-      <Link to={"/login"}> Login</Link>
+    <div className="form-card">
+      <Card>
+        <CardBody>
+          <Form inline onSubmit={handleSignupSubmit}>
+            <h1>Sign Up</h1>
+            <FormGroup floating>
+              <Input
+                id="examplePassword"
+                name="name"
+                placeholder="Name"
+                type="text"
+                onChange={handleName}
+              />
+              <Label className="input-form" for="examplePassword">
+                Name
+              </Label>
+            </FormGroup>{" "}
+            <FormGroup floating>
+              <Input
+                id="exampleEmail"
+                name="email"
+                placeholder="Email"
+                type="email"
+                onChange={handleEmail}
+              />
+              <Label className="input-form" for="exampleEmail">
+                Email
+              </Label>
+            </FormGroup>{" "}
+            <FormGroup floating>
+              <Input
+                id="examplePassword"
+                name="password"
+                placeholder="Password"
+                type="password"
+                onChange={handlePassword}
+              />
+              <Label className="input-form" for="examplePassword">
+                Password
+              </Label>
+            </FormGroup>{" "}
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+            <Button>Submit</Button>
+            <p>Already have account?</p>
+            <Link to={"/login"}>
+              <Button color="success" outline>
+                Login
+              </Button>
+            </Link>
+          </Form>
+        </CardBody>
+      </Card>
     </div>
   );
 }

@@ -1,0 +1,59 @@
+.addform {
+  display: flex;
+  flex-direction: column;
+  border: solid 1px;
+  border-radius: 4px;
+  margin: 10%;
+  box-shadow: 0px 2px 2px gray;
+}
+
+.form-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-flex button {
+  margin: 10px;
+  border-style: none;
+  background-color: transparent;
+}
+
+.row-task {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.task-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5% 5% 0 5%;
+}
+
+.task-description textarea {
+  width: 80%;
+  max-height: 100px;
+}
+
+.input-task {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-task input {
+  margin: 0px;
+  padding: 0px;
+}
+
+.deadline input {
+  max-width: 145px;
+}
+
+.input-task select {
+  margin: 0px;
+  padding: 0px;
+  max-height: 24px;
+}

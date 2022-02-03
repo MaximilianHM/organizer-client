@@ -4,6 +4,16 @@ import axios from "axios";
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
+import "./LoginPage.css";
+import {
+  Form,
+  FormGroup,
+  Input,
+  Label,
+  Button,
+  Card,
+  CardBody,
+} from "reactstrap";
 
 const apiURL = process.env.REACT_APP_SERVER_URL;
 
@@ -33,42 +43,58 @@ function LoginPage(props) {
         { headers: { Authorization: `Bearer ${authToken}` } }
       );
 
-      // or with a service
-      // const response = await authService.login(requestBody);
-
-      // Save the token and set the user as logged in ...
       const token = response.data.authToken;
       logInUser(token);
-      navigate("/tasks");
+      navigate("/categories");
     } catch (error) {
-      // If the request resolves with an error, set the error message in the state
       setErrorMessage("Something went wrong");
     }
   };
 
   return (
-    <div className="LoginPage">
-      <h1>Login</h1>
+    <>
+      <Card className="login-form">
+        <CardBody>
+          <h1>Login</h1>
+          <Form inline onSubmit={handleLoginSubmit}>
+            <FormGroup floating>
+              <Input
+                id="exampleEmail"
+                name="email"
+                placeholder="Email"
+                type="email"
+                // value={email}
+                onChange={handleEmail}
+              />
+              <Label className="input-form" for="exampleEmail">
+                Email
+              </Label>
+            </FormGroup>{" "}
+            <FormGroup floating>
+              <Input
+                id="examplePassword"
+                name="password"
+                placeholder="Password"
+                type="password"
+                onChange={handlePassword}
+              />
+              <Label className="input-form" for="examplePassword">
+                Password
+              </Label>
+            </FormGroup>{" "}
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+            <Button>Submit</Button>
+          </Form>
+          <p>Don't have an account yet?</p>
 
-      <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
-        <input type="text" name="email" value={email} onChange={handleEmail} />
-
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
-
-        <button type="submit">Login</button>
-      </form>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      <p>Don't have an account yet?</p>
-      <Link to={"/signup"}> Sign Up</Link>
-    </div>
+          <Link to={"/signup"}>
+            <Button color="info" outline>
+              Sign Up
+            </Button>
+          </Link>
+        </CardBody>
+      </Card>
+    </>
   );
 }
 

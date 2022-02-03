@@ -1,9 +1,7 @@
-// import { Link } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import AddCategory from "./../../components/AddCategory/AddCategory";
-// import EditCategory from "./../../components/EditCategory/EditCategory";
 import { AuthContext } from "../../context/auth.context";
 import { FaSortAlphaUp, FaTrashAlt } from "react-icons/fa";
 import "./Sidebar.css";
@@ -11,29 +9,21 @@ import "./Sidebar.css";
 const apiURL = process.env.REACT_APP_SERVER_URL;
 
 function Sidebar() {
-  // Get the value from the context
-
   const [categories, setCategories] = useState([]);
   const [deleted, setDeleted] = useState(false);
-  // const [editedCat, setEditedCat] = useState("");
-  // const [idCat, setIdCat] = useState("");
+
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
   const getAllCategories = async () => {
     try {
       const authToken = localStorage.getItem("authToken");
-      const response = await axios.get(
-        // "http://localhost:5005/api/categories"
-        `${apiURL}/api/categories`,
-        {
-          headers: {
-            Authorization: `Bearer ${authToken}`,
-          },
-        }
-      );
+      const response = await axios.get(`${apiURL}/api/categories`, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
       setCategories(response.data);
-      // setEditedCat(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -42,15 +32,11 @@ function Sidebar() {
   const handleDelete = async (categoryId) => {
     try {
       const authToken = localStorage.getItem("authToken");
-      await axios.delete(
-        // "http://localhost:5005/api/categories/"
-        `${apiURL}/api/categories/` + categoryId,
-        {
-          headers: {
-            Authorization: `Bearer ${authToken}`,
-          },
-        }
-      );
+      await axios.delete(`${apiURL}/api/categories/` + categoryId, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
 
       setDeleted(!deleted);
 
@@ -59,39 +45,6 @@ function Sidebar() {
       console.log(error);
     }
   };
-
-  // console.log("editedCat ", editedCat);
-  // const handleEdit = async (categoryId) => {
-  //   try {
-  //     const categoryEdited = editedCat.map((oneEditedCategory) => {
-  //       return oneEditedCategory._id;
-  //     });
-  //     console.log("categoryEdited :>> ", categoryEdited);
-
-  //     const authToken = localStorage.getItem("authToken");
-  //     await axios.put(
-  //       // "http://localhost:5005/api/category/"
-  //       apiURL + "/api/category/" + categoryId,
-  //       {
-  //         categoryName: editedCat,
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${authToken}`,
-  //         },
-  //       }
-  //     );
-
-  //     setEditedCat("");
-
-  //     navigate("/categories");
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // useEffect(() => {
-  //   getAllCategories();
-  // }, []);
 
   useEffect(() => {
     getAllCategories();
@@ -108,17 +61,12 @@ function Sidebar() {
       }
       return 0;
     });
-    // newArr.sort();
+
     setCategories([...newArr]);
   };
 
-  // useEffect(() => {
-  //   getAllCategories();
-  // }, [editedCat]);
-
   return (
     <>
-      {/* <div className="CategoriesListPage"> */}
       <div className="sidenav">
         <h1>Categories</h1>
         <AddCategory refreshCategories={getAllCategories} />
@@ -127,19 +75,14 @@ function Sidebar() {
         </button>
         {categories.map((oneCategory) => {
           return (
-            <div key={oneCategory._id} className="categoryField">
-              {/* <EditCategory refreshCategories={getAllCategories} /> */}
+            <div key={oneCategory._id} className="category-field">
               {user && (
-                <Link to={"/categories/" + oneCategory._id}>
-                  <p>{oneCategory.categoryName}</p>
-                </Link>
+                <div className="category-sidebar">
+                  <Link to={"/categories/" + oneCategory._id}>
+                    <p>{oneCategory.categoryName}</p>
+                  </Link>
+                </div>
               )}
-              {/* <form onSubmit={() => handleEdit(oneCategory._id)}>
-                <input type="text" name="categoryName" />
-                <button>
-                  <FaEdit />
-                </button>
-              </form> */}
 
               <button onClick={() => handleDelete(oneCategory._id)}>
                 <FaTrashAlt />

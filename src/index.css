@@ -1,4 +1,17 @@
 /* src/index.css */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&family=JetBrains+Mono:ital,wght@0,100;0,400;0,500;0,600;0,700;1,100;1,300&family=PT+Sans:wght@400;700&family=Roboto:wght@500&display=swap");
+
+* {
+  font-family: "Inter", sans-serif;
+}
+
+:root {
+  --main-bg-color: #183e6d;
+  --secondary-bg-color: #092241;
+  --table-bg-color: #94a7c8;
+  --main-font-color: #6d6b6b;
+  --secondary-font-color: #ffffff;
+}
 
 body {
   margin: 0;
@@ -9,30 +22,12 @@ a {
   color: black;
 }
 
-button,
-select {
-  padding: 5px 10px;
-  min-width: 50px;
-  margin: 5px;
-  font-size: 18px;
-  height: 40px;
-}
-
 label {
-  width: 200px;
   display: block;
 }
 
-input,
-textarea {
-  width: 200px;
-  padding: 10px;
-  display: inline-block;
-  margin: 10px;
-}
-
 nav {
-  background-color: #111;
+  background-color: var(--secondary-bg-color);
   color: white;
   padding: 0px 20px;
   box-shadow: 0px 1px 2px gray;
@@ -43,7 +38,7 @@ nav {
 
 nav li {
   list-style: none;
-  color: white;
+  color: var(--secondary-font-color);
   font-size: 24px;
   font-weight: 600;
 }
@@ -58,16 +53,7 @@ nav li {
   border-radius: 4px;
 }
 
-.ProjectCard h3::after {
-  content: url("https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/m3/icon-expand.png");
-  margin-left: 5px;
-}
-
-.EditProjectPage,
-.AddProject,
-.AddTask,
-.SignupPage,
-.LoginPage {
+.AddTask {
   background: #f9eec3;
   border: 1px solid grey;
   box-shadow: 0px 2px 3px grey;
@@ -79,24 +65,9 @@ nav li {
   border-radius: 4px;
 }
 
-.EditProjectPage {
-  background-color: rgb(239, 196, 88);
-}
-
-.SignupPage,
-.LoginPage {
-  background-color: #608dd5;
-}
-
-.LoginPage {
-  background-color: #94a7c8;
-}
-
 .EditProjectPage form,
 .AddTask form,
-.AddProject form,
-.SignupPage form,
-.LoginPage form {
+.AddProject form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -111,7 +82,7 @@ nav li {
   background-color: #dfeef9;
 }
 .Navbar {
-  padding: 5px 0px 0px 300px;
+  padding: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -120,7 +91,7 @@ nav li {
 
 .Navbar button {
   background: none;
-  color: white;
+  color: var(--secondary-font-color);
   border: none;
   padding: 0;
   font: inherit;
@@ -135,19 +106,43 @@ nav li {
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 35px;
+  max-height: 35px;
+  border-radius: 35px;
+  border: 2px solid white;
+  background-color: rgba(211, 8, 8, 0.576);
 }
 
 .profile-img-wrapper a {
   text-decoration: none;
-}
-
-.profile-img {
-  width: 35px;
-  height: 35px;
-  border-radius: 35px;
-  border: 2px solid white;
-  background-color: rgba(211, 8, 8, 0.576);
+  border-style: none;
   color: white;
   font-weight: bold;
   font-size: 1.8em;
+}
+
+.profile-img-wrapper a:hover {
+  color: white;
+}
+
+.logo-image {
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  font-style: italic;
+  background-color: #fff;
+  transform: skew(9deg, 0deg);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 10%;
+}
+
+.logo-image img {
+  color: white;
+  height: 40px;
+}
+
+.logo-image:hover {
+  color: black;
 }
