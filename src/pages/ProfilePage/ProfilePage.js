@@ -14,13 +14,9 @@ function ProfilePage() {
       try {
         const storedToken = localStorage.getItem("authToken");
         if (storedToken) {
-          const response = await axios.get(
-            // "http://localhost:5005/api/users/current",
-            `${apiURL}/api/users/current`,
-            {
-              headers: { Authorization: `Bearer ${storedToken}` },
-            }
-          );
+          const response = await axios.get(`${apiURL}/api/users/current`, {
+            headers: { Authorization: `Bearer ${storedToken}` },
+          });
           setProfile(response.data);
         }
       } catch (error) {
@@ -32,7 +28,7 @@ function ProfilePage() {
   }, []);
 
   return (
-    <div className="card">
+    <div className="card-profile">
       <div className="text">
         <label
           style={{

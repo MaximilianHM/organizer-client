@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import AddCategory from "./../../components/AddCategory/AddCategory";
-// import EditCategory from "./../../components/EditCategory/EditCategory";
 import { AuthContext } from "../../context/auth.context";
 import { FaSortAlphaUp, FaTrashAlt } from "react-icons/fa";
 
@@ -11,8 +10,6 @@ const apiURL = process.env.REACT_APP_SERVER_URL;
 function CategoryListPage() {
   const [categories, setCategories] = useState([]);
   const [deleted, setDeleted] = useState(false);
-  // const [editedCat, setEditedCat] = useState("");
-  // const [idCat, setIdCat] = useState("");
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
@@ -29,7 +26,7 @@ function CategoryListPage() {
         }
       );
       setCategories(response.data);
-      // setEditedCat(response.data);
+      console.log("response.data :>> ", response.data);
     } catch (error) {
       console.log(error);
     }
@@ -56,39 +53,6 @@ function CategoryListPage() {
     }
   };
 
-  // console.log("editedCat ", editedCat);
-  // const handleEdit = async (categoryId) => {
-  //   try {
-  //     const categoryEdited = editedCat.map((oneEditedCategory) => {
-  //       return oneEditedCategory._id;
-  //     });
-  //     console.log("categoryEdited :>> ", categoryEdited);
-
-  //     const authToken = localStorage.getItem("authToken");
-  //     await axios.put(
-  //       // "http://localhost:5005/api/category/"
-  //       apiURL + "/api/category/" + categoryId,
-  //       {
-  //         categoryName: editedCat,
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${authToken}`,
-  //         },
-  //       }
-  //     );
-
-  //     setEditedCat("");
-
-  //     navigate("/categories");
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // useEffect(() => {
-  //   getAllCategories();
-  // }, []);
-
   useEffect(() => {
     getAllCategories();
   }, [deleted]);
@@ -104,17 +68,13 @@ function CategoryListPage() {
       }
       return 0;
     });
-    // newArr.sort();
+
     setCategories([...newArr]);
   };
 
-  // useEffect(() => {
-  //   getAllCategories();
-  // }, [editedCat]);
-
   return (
     <>
-      {/* <div className="CategoriesListPage"> */}
+      <h1>Category List page</h1>
       <div className="sidenav">
         <h1>Categories</h1>
         <AddCategory refreshCategories={getAllCategories} />
@@ -123,19 +83,14 @@ function CategoryListPage() {
         </button>
         {categories.map((oneCategory) => {
           return (
-            <div key={oneCategory._id} className="categoryField">
-              {/* <EditCategory refreshCategories={getAllCategories} /> */}
+            <div key={oneCategory._id} className="category-field">
               {user && (
-                <Link to={"/categories/" + oneCategory._id}>
-                  <p>{oneCategory.categoryName}</p>
-                </Link>
+                <div className="category-sidebar">
+                  <Link to={"/categories/" + oneCategory._id}>
+                    <p>{oneCategory.categoryName}</p>
+                  </Link>
+                </div>
               )}
-              {/* <form onSubmit={() => handleEdit(oneCategory._id)}>
-                <input type="text" name="categoryName" />
-                <button>
-                  <FaEdit />
-                </button>
-              </form> */}
 
               <button onClick={() => handleDelete(oneCategory._id)}>
                 <FaTrashAlt />

@@ -8,9 +8,8 @@ import {
   FaBookDead,
   FaChartLine,
   FaSearch,
-  FaArrowLeft,
 } from "react-icons/fa";
-import { Table } from "reactstrap";
+import { Table, Button } from "reactstrap";
 import "./TaskListPage.css";
 
 import AddTask from "./../../components/AddTask/AddTask";
@@ -29,7 +28,6 @@ function TaskListPage() {
     try {
       const authToken = localStorage.getItem("authToken");
       const response = await axios.get(
-        // "http://localhost:5005/api/categories/"
         `${apiURL}/api/categories/` + categoryId,
         {
           headers: {
@@ -47,12 +45,13 @@ function TaskListPage() {
     }
   };
 
+  useEffect(() => {
+    getAllTasks();
+  }, [categoryId]);
+
   const handleDelete = async (taskId) => {
     try {
-      await axios.delete(
-        // "http://localhost:5005/api/tasks/"
-        `${apiURL}/api/tasks/` + taskId
-      );
+      await axios.delete(`${apiURL}/api/tasks/` + taskId);
 
       setDeletedTask(!deletedTask);
 
@@ -65,9 +64,6 @@ function TaskListPage() {
   useEffect(() => {
     getAllTasks();
   }, [deletedTask]);
-  // useEffect(() => {
-  //   getAllTasks();
-  // }, []);
 
   const handleSortbyAlpha = async () => {
     const newArr = [...tasks];
@@ -123,49 +119,49 @@ function TaskListPage() {
 
   return (
     <div className="TasksListPage">
-      <h1>Your tasks from {category.categoryName}</h1>
       <AddTask refreshTasks={getAllTasks} />
-      <button onClick={() => navigate(-1)}>
-        <FaArrowLeft />
-      </button>
-      <h1>{category.categoryName}</h1>
-      <p>Sort the task by:</p>
 
-      {tasks.map((oneTask) => {
-        return (
-          <Table className="TableTask" key={oneTask._id}>
-            <tr>
-              <th>Task</th>
-              <th>Status</th>
-              <th>Deadline</th>
-              <th>Description</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-            <tr>
-              <th>
-                <button onClick={handleSortbyAlpha}>
-                  <FaSortAlphaUp />
-                </button>
-              </th>
-              <th>
-                <button onClick={handleSortbyDone}>
-                  <FaCheck />
-                </button>
-                <button onClick={handleSortbyInProgress}>
-                  <FaChartLine />
-                </button>
-              </th>
-              <th>
-                <button onClick={handleSortbyDeadLine}>
-                  <FaBookDead />
-                </button>
-              </th>
-              <th></th>
-              <th></th>
-              <th></th>
-            </tr>
-            <tr>
+      <h1>{category.categoryName} tasks</h1>
+
+      <Table>
+        <div className="table-head">
+          <tr>
+            <th>Task</th>
+            <th>Status</th>
+            <th>Deadline</th>
+            <th>Description</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+          <tr className="sorted-field">
+            <th>
+              <button onClick={handleSortbyAlpha}>
+                <FaSortAlphaUp />
+              </button>
+            </th>
+            <th>
+              <button onClick={handleSortbyDone}>
+                <FaCheck /> Done
+              </button>
+              <button onClick={handleSortbyInProgress}>
+                <FaChartLine /> In Progress
+              </button>
+            </th>
+            <th>
+              <button onClick={handleSortbyDeadLine}>
+                <FaBookDead />
+              </button>
+            </th>
+            <th className="blank-space"></th>
+            <th className="blank-space"></th>
+            <th className="blank-space"></th>
+          </tr>
+        </div>
+      </Table>
+      <Table>
+        {tasks.map((oneTask) => {
+          return (
+            <tr key={oneTask._id}>
               <td>
                 <label>{oneTask.taskName}</label>
               </td>
@@ -175,27 +171,30 @@ function TaskListPage() {
               <td>
                 <label>{oneTask.deadLine}</label>
               </td>
-              <td>
+              <td className="description-field">
                 <label>{oneTask.description}</label>
               </td>
               <td>
                 <Link to={"/tasks/" + oneTask._id}>
-                  <button>
+                  <Button>
                     <FaSearch />
-                  </button>
+                    Details
+                  </Button>
                 </Link>
               </td>
-              <td>
-                <button onClick={() => handleDelete(oneTask._id)}>
+              <td className="btn-delete">
+                <Button
+                  color="danger"
+                  outline
+                  onClick={() => handleDelete(oneTask._id)}
+                >
                   Delete
-                </button>
+                </Button>
               </td>
-              {/* <Link to={"/tasks/" + oneTask._id}> */}
-              {/* </Link> */}
             </tr>
-          </Table>
-        );
-      })}
+          );
+        })}
+      </Table>
     </div>
   );
 }

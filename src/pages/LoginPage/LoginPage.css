@@ -1,0 +1,11 @@
+.error-message {
+  text-align: center;
+  color: #fff;
+  font-weight: 600;
+  background-color: tomato;
+  border-radius: 4px;
+}
+
+.login-form {
+  margin-top: 50px;
+}

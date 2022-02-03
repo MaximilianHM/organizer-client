@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaSync, FaArrowLeft } from "react-icons/fa";
+import "bootstrap/dist/css/bootstrap.min.css";
 
+import "./TaskDetailsPage.css";
 const apiURL = process.env.REACT_APP_SERVER_URL;
 
 function TaskDetailsPage() {
@@ -62,47 +64,61 @@ function TaskDetailsPage() {
   };
 
   return (
-    <div>
+    <div className="edit-card">
       <h1>Edit your tasks</h1>
-      <form className="AddTask" onSubmit={handleSubmit}>
-        <label>Task name</label>
-        <input
-          type="text"
-          name="taskName"
-          value={taskName}
-          onChange={(e) => setTaskName(e.target.value)}
-        />
+      <form className="edit-form" onSubmit={handleSubmit}>
+        <div className="edit-input">
+          <div className="input-field">
+            <div className="test">
+              <label>Task name:</label>
+              <input
+                type="text"
+                name="taskName"
+                value={taskName}
+                onChange={(e) => setTaskName(e.target.value)}
+              />
+            </div>
+          </div>
 
-        <label>Progress status:</label>
+          <div className="input-field">
+            <label>Progress status:</label>
 
-        <select name="status" onChange={(e) => setStatus(e.target.value)}>
-          <option value="In Progress">In Progres</option>
-          <option value="Done">Done</option>
-          <option value="Canceled">Canceled</option>
-        </select>
+            <select name="status" onChange={(e) => setStatus(e.target.value)}>
+              <option value="In Progress">In Progres</option>
+              <option value="Done">Done</option>
+              <option value="Canceled">Canceled</option>
+            </select>
+          </div>
+          <div className="input-field deadline-input">
+            <label>Deadline:</label>
+            <input
+              type="date"
+              name="deadLine"
+              value={deadLine}
+              onChange={(e) => setDeadLine(e.target.value)}
+            />
+          </div>
+        </div>
 
-        <label>{deadLine}</label>
-        <input
-          type="date"
-          name="deadLine"
-          value={deadLine}
-          onChange={(e) => setDeadLine(e.target.value)}
-        />
-        <label>Description:</label>
-        <input
-          type="text"
-          name="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+        <div className="edit-description">
+          <label>Description:</label>
+          <textarea
+            type="text"
+            name="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
 
-        <button type="submit">
-          <FaSync />
-        </button>
+        <div className="edit-btn">
+          <button onClick={() => navigate(-1)}>
+            <FaArrowLeft /> Back
+          </button>
+          <button type="submit">
+            <FaSync /> Refresh
+          </button>
+        </div>
       </form>
-      <button onClick={() => navigate(-1)}>
-        <FaArrowLeft />
-      </button>
     </div>
   );
 }

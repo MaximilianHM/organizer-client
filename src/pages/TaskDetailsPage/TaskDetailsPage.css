@@ -1,0 +1,57 @@
+.edit-card {
+  max-width: 800px;
+  border-radius: 4px;
+  border: solid black 2px;
+  margin: 50px 0 0 400px;
+}
+
+.edit-form {
+}
+
+.edit-input {
+  display: flex;
+}
+
+.edit-input label {
+  margin: 0;
+  padding: 0;
+}
+
+.edit-input input {
+  margin: 0;
+  padding: 0;
+  max-height: 24px;
+}
+
+.edit-input select {
+  margin: 0;
+  padding: 0;
+  max-height: 24px;
+}
+
+.edit-description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px;
+}
+
+.edit-description textarea {
+  width: 80%;
+  max-height: 100px;
+}
+
+.edit-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-btn button {
+  margin: 30px;
+  border-style: none;
+  background-color: transparent;
+}
+
+.deadline-input input {
+  max-width: 135px;
+}

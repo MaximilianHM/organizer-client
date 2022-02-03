@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Timex",
+  "name": "Timex manage your time",
   "icons": [
     {
       "src": "logo192.png",

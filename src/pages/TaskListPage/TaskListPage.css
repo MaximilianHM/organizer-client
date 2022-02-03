@@ -7,5 +7,41 @@
 }
 
 table {
+  margin: 0;
+  padding: 0;
   border-collapse: collapse;
+  background-color: var(--table-bg-color);
+  border-radius: 10px;
+}
+
+tr {
+  border: 0px;
+  display: flex;
+  justify-content: space-between;
+  color: var(--secondary-font-color);
+}
+
+tr > th {
+  border: 0px;
+}
+
+.sorted-field > th > button {
+  background-color: transparent;
+  border-style: none;
+  margin: 0 5px;
+  color: var(--secondary-font-color);
+}
+
+.btn-delete button {
+  padding: 8px 4px;
+}
+
+.description-field label {
+  max-width: 160px;
+  min-width: 160px;
+  text-align: left;
+}
+
+.blank-space {
+  width: 140px;
 }
