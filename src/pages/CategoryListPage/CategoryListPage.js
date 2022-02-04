@@ -4,6 +4,7 @@ import axios from "axios";
 import AddCategory from "./../../components/AddCategory/AddCategory";
 import { AuthContext } from "../../context/auth.context";
 import { FaSortAlphaUp, FaTrashAlt } from "react-icons/fa";
+import "./CatergoryListPage.css";
 
 const apiURL = process.env.REACT_APP_SERVER_URL;
 
@@ -74,7 +75,9 @@ function CategoryListPage() {
 
   return (
     <>
-      <h1>Category List page</h1>
+      <div className="category-list-page">
+        <h1>Select a category or create a new one</h1>
+      </div>
       <div className="sidenav">
         <h1>Categories</h1>
         <AddCategory refreshCategories={getAllCategories} />
