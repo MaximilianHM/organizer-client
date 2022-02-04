@@ -16,7 +16,6 @@ function EditCategory() {
       e.preventDefault();
 
       await axios.put(
-        // "http://localhost:5005/api/category/"
         apiURL + "/api/category/" + category._id,
         {
           category,

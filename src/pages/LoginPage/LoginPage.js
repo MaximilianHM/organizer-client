@@ -22,7 +22,6 @@ function LoginPage(props) {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
 
-  // Get the function for saving and verifying the token
   const { logInUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
