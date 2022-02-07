@@ -35,14 +35,14 @@ function LoginPage(props) {
       const authToken = localStorage.getItem("authToken");
       const response = await axios.post(
         // "http://localhost:5005/auth/login",
-        `${apiURL}/auth/login`,
+        `${apiURL}auth/login`,
         requestBody,
         { headers: { Authorization: `Bearer ${authToken}` } }
       );
 
       const token = response.data.authToken;
       logInUser(token);
-      navigate("/categories");
+      navigate("/");
     } catch (error) {
       setErrorMessage("Something went wrong");
     }
