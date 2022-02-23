@@ -1,0 +1,18 @@
+$mainColor: #3e497a;
+$bgColor: #21325e;
+$mainFontColor: #02a676;
+$secondaryFontColor: #fff;
+
+$width: 768px;
+
+@mixin mobile {
+  @media (max-width: $width) {
+    @content;
+  }
+}
+
+* {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+}

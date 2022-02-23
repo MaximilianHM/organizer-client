@@ -1,3 +1,19 @@
+.AddCatergory {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: space-around;
+}
+
+.AddCatergory form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
 .AddCatergory input {
   width: 130px;
   margin: 0 20px;
@@ -6,6 +22,7 @@
 }
 
 .AddCatergory button {
+  border-radius: 10px;
   background-color: black;
   border-color: black;
   color: white;

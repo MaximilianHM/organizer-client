@@ -1,7 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 
-import Navbar from "./components/Navbar/Navbar";
+// import Navbar from "./components/Navbar/Navbar";
 
 import HomePage from "./pages/HomePage/HomePage";
 import SignupPage from "./pages/SignupPage/SignupPage";
@@ -17,10 +17,19 @@ import TaskListPage from "./pages/TaskListPage/TaskListPage";
 import TaskDetailsPage from "./pages/TaskDetailsPage/TaskDetailsPage";
 import EditProfilePage from "./pages/EditProfilePage/EditProfilePage";
 
+import NavbarOne from "./components/navbarOne/Navbar";
+import Menu from "./components/menu/Menu";
+import { useState } from "react";
+
 function App() {
+  const [menuOpen, setMenuOpen] = useState(true);
+
   return (
     <div className="App">
-      <Navbar />
+      {/* <Navbar /> */}
+      <NavbarOne menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+
       <Routes>
         <Route path="/" element={<HomePage />} />
 
