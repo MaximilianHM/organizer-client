@@ -1,11 +1,17 @@
+.profilePage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+}
+
 .card-profile {
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   padding: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 500px;
-  margin-left: 600px;
+  width: 40%;
   margin-top: 100px;
 }
 
@@ -13,4 +19,40 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.profile-img {
+  overflow: hidden;
+}
+
+.text {
+  label {
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    font-size: 70px;
+  }
+}
+
+.profileInfo {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.profileBtn {
+  margin: 10px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.profileBtn button {
+  background-color: transparent;
+  border-style: none;
+}
+
+.profileBtn button:hover {
+  color: gray;
 }

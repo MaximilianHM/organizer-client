@@ -28,28 +28,26 @@ function ProfilePage() {
   }, []);
 
   return (
-    <div className="card-profile">
-      <div className="text">
-        <label
-          style={{
-            height: "100px",
-            width: "100px",
-            borderRadius: "100%",
-            fontSize: "70px",
-          }}
-          className="profile-img"
-        >
-          {" "}
-          {profile.image}
-        </label>
-
-        <h4>Name: {profile.name}</h4>
-        <label>E-mail: {profile.email}</label>
-        <div>
-          <Link to="/profile/edit">
-            <button>Edit Profile</button>
-          </Link>
-          <button onClick={() => navigate(-1)}>Back</button>
+    <div className="profilePage">
+      <div className="card-profile">
+        <div className="text">
+          <label className="profile-img"> {profile.image}</label>
+        </div>
+        <div className="profileInfo">
+          <h4>Name: {profile.name}</h4>
+          <label>E-mail: {profile.email}</label>
+        </div>
+        <div className="profileBtn">
+          <div>
+            <Link to="/profile/edit">
+              <button>Edit Profile</button>
+            </Link>
+          </div>
+          <div>
+            <button className="backBtn" onClick={() => navigate(-1)}>
+              Back
+            </button>
+          </div>
         </div>
       </div>
     </div>

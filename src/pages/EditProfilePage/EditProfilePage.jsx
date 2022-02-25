@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "../ProfilePage/ProfilePage.scss";
+import "./EditProfilePage.scss";
 
 const apiURL = process.env.REACT_APP_SERVER_URL;
 
@@ -10,8 +11,6 @@ function EditProfilePage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
-
-  // console.log("profile.name :>> ", profile.name[0]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,28 +57,34 @@ function EditProfilePage() {
   };
 
   return (
-    <div className="card">
-      <form onSubmit={handleSubmit}>
-        <h1>EditProfile Page</h1>
-        <label>Name:</label>
-        <input
-          type="text"
-          name="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <label>E-mail:</label>
-        <input
-          type="email"
-          name="name"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        {/* <img src={profile.image} alt="Profile" /> */}
-        <br />
-        <button type="submit">Edit Profile</button>
-        <button onClick={() => navigate(-1)}>Back</button>
-      </form>
+    <div className="editProfilePage">
+      <div className="cardProfilePage">
+        <form onSubmit={handleSubmit}>
+          <h1>Edit your profile</h1>
+          <div className="inputField">
+            <label>Name:</label>
+            <input
+              type="text"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div className="inputField">
+            <label>E-mail:</label>
+            <input
+              type="email"
+              name="name"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="btnEditProfile">
+            <button type="submit">Edit Profile</button>
+            <button onClick={() => navigate(-1)}>Back</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
