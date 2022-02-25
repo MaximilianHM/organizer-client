@@ -4,10 +4,10 @@ import axios from "axios";
 import { FaSync, FaArrowLeft } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import "./TaskDetailsPage.css";
+import "./TaskDetailsPage.scss";
 const apiURL = process.env.REACT_APP_SERVER_URL;
 
-function TaskDetailsPage() {
+function TaskDetailsPage({ menuOpen }) {
   const [task, setTask] = useState([]);
   const [taskName, setTaskName] = useState("");
   const [status, setStatus] = useState("");
@@ -64,7 +64,7 @@ function TaskDetailsPage() {
   };
 
   return (
-    <div className="edit-card">
+    <div className={"edit-card " + (!menuOpen && "active")}>
       <h1>Edit your tasks</h1>
       <form className="edit-form" onSubmit={handleSubmit}>
         <div className="edit-input">

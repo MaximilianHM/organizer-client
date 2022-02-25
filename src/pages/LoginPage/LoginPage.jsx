@@ -1,6 +1,8 @@
 import axios from "axios";
-import { useState } from "react";
-import "./SignupPage.css";
+import { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/auth.context";
+import "./LoginPage.scss";
 import {
   Form,
   FormGroup,
@@ -10,70 +12,55 @@ import {
   Card,
   CardBody,
 } from "reactstrap";
-import { Link, useNavigate } from "react-router-dom";
 
 const apiURL = process.env.REACT_APP_SERVER_URL;
 
-function SignupPage() {
+function LoginPage(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
+
+  const { logInUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
-  const handleName = (e) => setName(e.target.value);
 
-  const handleSignupSubmit = async (e) => {
+  const handleLoginSubmit = async (e) => {
     try {
       e.preventDefault();
-      const requestBody = {
-        email,
-        password,
-        name,
-        image: name[0].toUpperCase(),
-      };
+      const requestBody = { email, password };
 
       const authToken = localStorage.getItem("authToken");
-      await axios.post(
-        // 'http://localhost:5005/auth/signup',
-        `${apiURL}/auth/signup`,
+      const response = await axios.post(
+        // "http://localhost:5005/auth/login",
+        `${apiURL}/auth/login`,
         requestBody,
         { headers: { Authorization: `Bearer ${authToken}` } }
       );
 
-      navigate("/login");
+      const token = response.data.authToken;
+      logInUser(token);
+      navigate("/");
     } catch (error) {
       setErrorMessage("Something went wrong");
     }
   };
 
   return (
-    <div className="form-card">
-      <Card>
+    <>
+      <Card className="login-form">
         <CardBody>
-          <Form inline onSubmit={handleSignupSubmit}>
-            <h1>Sign Up</h1>
-            <FormGroup floating>
-              <Input
-                id="examplePassword"
-                name="name"
-                placeholder="Name"
-                type="text"
-                onChange={handleName}
-              />
-              <Label className="input-form" for="examplePassword">
-                Name
-              </Label>
-            </FormGroup>{" "}
+          <h1>Login</h1>
+          <Form inline onSubmit={handleLoginSubmit}>
             <FormGroup floating>
               <Input
                 id="exampleEmail"
                 name="email"
                 placeholder="Email"
                 type="email"
+                // value={email}
                 onChange={handleEmail}
               />
               <Label className="input-form" for="exampleEmail">
@@ -94,17 +81,18 @@ function SignupPage() {
             </FormGroup>{" "}
             {errorMessage && <p className="error-message">{errorMessage}</p>}
             <Button>Submit</Button>
-            <p>Already have account?</p>
-            <Link to={"/login"}>
-              <Button color="success" outline>
-                Login
-              </Button>
-            </Link>
           </Form>
+          <p>Don't have an account yet?</p>
+
+          <Link to={"/signup"}>
+            <Button color="info" outline>
+              Sign Up
+            </Button>
+          </Link>
         </CardBody>
       </Card>
-    </div>
+    </>
   );
 }
 
-export default SignupPage;
+export default LoginPage;

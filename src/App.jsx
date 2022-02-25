@@ -1,22 +1,16 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-
-// import Navbar from "./components/Navbar/Navbar";
-
 import HomePage from "./pages/HomePage/HomePage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
-
 import IsPrivate from "./components/IsPrivate/IsPrivate";
 import IsAnon from "./components/IsAnon/IsAnon";
-
 import CategoryListPage from "./pages/CategoryListPage/CategoryListPage";
 import TaskListPage from "./pages/TaskListPage/TaskListPage";
 import TaskDetailsPage from "./pages/TaskDetailsPage/TaskDetailsPage";
 import EditProfilePage from "./pages/EditProfilePage/EditProfilePage";
-
 import NavbarOne from "./components/navbarOne/Navbar";
 import Menu from "./components/menu/Menu";
 import { useState } from "react";
@@ -26,12 +20,14 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Navbar /> */}
       <NavbarOne menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/"
+          element={<HomePage menuOpen={menuOpen} setMenuOpen={setMenuOpen} />}
+        />
 
         <Route
           path="/profile"
@@ -85,7 +81,7 @@ function App() {
           path="/categories/:categoryId"
           element={
             <IsPrivate>
-              <TaskListPage />
+              <TaskListPage menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
             </IsPrivate>
           }
         />
@@ -94,7 +90,7 @@ function App() {
           path="/tasks/:taskId"
           element={
             <IsPrivate>
-              <TaskDetailsPage />
+              <TaskDetailsPage menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
             </IsPrivate>
           }
         />

@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { FaRegCalendarPlus } from "react-icons/fa";
-import "./AddTask.css";
+import "./AddTask.scss";
 
 const apiURL = process.env.REACT_APP_SERVER_URL;
 

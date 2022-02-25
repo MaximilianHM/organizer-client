@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import AddCategory from "./../../components/AddCategory/AddCategory";
+import AddCategory from "../../components/AddCategory/AddCategory";
 import { AuthContext } from "../../context/auth.context";
 import { FaSortAlphaUp, FaTrashAlt } from "react-icons/fa";
-import "./CatergoryListPage.css";
+import "./CatergoryListPage.scss";
 
 const apiURL = process.env.REACT_APP_SERVER_URL;
 

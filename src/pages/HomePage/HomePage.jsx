@@ -1,9 +1,9 @@
-import "./HomePage.css";
+import "./HomePage.scss";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import { UncontrolledCarousel } from "reactstrap";
 
-function HomePage() {
+function HomePage({ menuOpen }) {
   const { isLoggedIn } = useContext(AuthContext);
 
   return (
@@ -93,9 +93,8 @@ function HomePage() {
       )}
 
       {isLoggedIn && (
-        <div className="home-loggedin">
+        <div className={"home-loggedin " + (!menuOpen && "active")}>
           <div className="home-loggedin-img">
-            {" "}
             <img
               src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=868&q=80"
               alt="Plans"

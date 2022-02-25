@@ -10,13 +10,10 @@
   z-index: 3;
   transition: all 1s ease;
   box-shadow: 0px 1px 2px gray;
-  display: flex;
-  justify-content: space-between;
 
   .wrapper {
     padding: 0 30px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
     width: 100%;
 
@@ -26,21 +23,8 @@
       align-items: center;
       width: 100%;
 
-      .logo-image {
-        text-decoration: none;
-        color: black;
-        background-color: white;
-        font-style: italic;
-        background-color: #fff;
-        transform: skew(9deg, 0deg);
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        width: 90%;
-      }
-
       .logo-image img {
-        color: white;
+        margin-left: 50px;
         height: 40px;
       }
 
@@ -51,8 +35,20 @@
 
     .right {
       display: flex;
-      flex-direction: end;
+      justify-content: end;
+      align-items: center;
       flex: 9;
+
+      button {
+        background-color: transparent;
+        color: $thirdFontColor;
+        border-style: none;
+        margin: 0 10px;
+      }
+
+      button:hover {
+        color: black;
+      }
 
       .profile-img-wrapper {
         width: 50px;
@@ -62,8 +58,9 @@
         max-width: 35px;
         max-height: 35px;
         border-radius: 35px;
-        border: 2px solid white;
+        border: 2px solid black;
         background-color: rgba(211, 8, 8, 0.576);
+        overflow: hidden;
       }
 
       .profile-img-wrapper a {
@@ -81,7 +78,7 @@
   }
 
   &.active {
-    background-color: $mainColor;
-    color: $secondaryFontColor;
+    color: $mainColor;
+    background-color: $secondaryFontColor;
   }
 }

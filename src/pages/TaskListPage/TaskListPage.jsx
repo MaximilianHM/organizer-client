@@ -10,13 +10,13 @@ import {
   FaSearch,
 } from "react-icons/fa";
 import { Table, Button } from "reactstrap";
-import "./TaskListPage.css";
+import "./TaskListPage.scss";
 
-import AddTask from "./../../components/AddTask/AddTask";
+import AddTask from "../../components/AddTask/AddTask";
 
 const apiURL = process.env.REACT_APP_SERVER_URL;
 
-function TaskListPage() {
+function TaskListPage({ menuOpen }) {
   const [tasks, setTasks] = useState([]);
   const [category, setCategory] = useState([]);
   const [deletedTask, setDeletedTask] = useState(false);
@@ -118,7 +118,7 @@ function TaskListPage() {
   };
 
   return (
-    <div className="TasksListPage">
+    <div className={"TasksListPage " + (!menuOpen && "active")}>
       <AddTask refreshTasks={getAllTasks} />
 
       <h1>{category.categoryName} tasks</h1>

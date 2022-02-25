@@ -6,7 +6,7 @@
 }
 
 :root {
-  --main-bg-color: #183e6d;
+  --main-bg-color: #301b3f;
   --secondary-bg-color: #092241;
   --table-bg-color: #94a7c8;
   --main-font-color: #6d6b6b;
@@ -43,19 +43,12 @@ label {
   border-radius: 4px;
 }
 
-.EditProjectPage form,
-.AddTask form,
-.AddProject form {
+.AddTask form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.AddTask button,
-.AddProject button {
+.AddTask button {
   display: block;
-}
-
-.TaskCard {
-  background-color: #dfeef9;
 }

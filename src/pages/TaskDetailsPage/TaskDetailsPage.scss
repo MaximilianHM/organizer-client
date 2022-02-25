@@ -2,10 +2,12 @@
   max-width: 800px;
   border-radius: 4px;
   border: solid black 2px;
-  margin: 50px 0 0 400px;
-}
+  margin: 150px 0 0 400px;
+  transition: all 1s ease;
 
-.edit-form {
+  &.active {
+    margin-left: 100px;
+  }
 }
 
 .edit-input {

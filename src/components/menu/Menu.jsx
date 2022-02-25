@@ -1,14 +1,10 @@
 import "./Menu.scss";
-// import { AuthContext } from "../../context/auth.context";
-// import { useContext } from "react";
-
 import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import AddCategory from "./../../components/AddCategory/AddCategory";
 import { AuthContext } from "../../context/auth.context";
 import { FaSortAlphaUp, FaTrashAlt } from "react-icons/fa";
-// import "./Sidebar.css";
 
 const apiURL = process.env.REACT_APP_SERVER_URL;
 
@@ -71,26 +67,30 @@ function Menu({ menuOpen, setMenuOpen }) {
 
   return (
     <>
-      <div className={"menu " + (menuOpen && "active")}>
-        {isLoggedIn && (
+      {isLoggedIn && (
+        <div className={"menu " + (menuOpen && "active")}>
           <>
+            <div className="hamburguer" onClick={() => setMenuOpen(!menuOpen)}>
+              <span className="line1"></span>
+              <span className="line2"> Open Categories</span>
+              <span className="line3"></span>
+            </div>
             <div className="sidenav">
-              <div
-                className="hamburguer"
-                onClick={() => setMenuOpen(!menuOpen)}
-              >
-                <span className="line1"></span>
-                <span className="line2"> Open Categories</span>
-                <span className="line3"></span>
-              </div>
               <h1>Categories</h1>
               <AddCategory refreshCategories={getAllCategories} />
-              <button onClick={handleSortbyAlpha}>
-                <FaSortAlphaUp />
-              </button>
+              <div className="alphaButton">
+                <button onClick={handleSortbyAlpha}>
+                  <FaSortAlphaUp />
+                </button>
+              </div>
               {categories.map((oneCategory) => {
                 return (
-                  <div key={oneCategory._id} className="category-field">
+                  <div
+                    key={oneCategory._id}
+                    className={
+                      "category-field " + (menuOpen && "active") + "Flipped"
+                    }
+                  >
                     {user && (
                       <div className="category-sidebar">
                         <Link to={"/categories/" + oneCategory._id}>
@@ -107,8 +107,8 @@ function Menu({ menuOpen, setMenuOpen }) {
               })}
             </div>
           </>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 }

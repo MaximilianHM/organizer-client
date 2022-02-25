@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
 import { FaRegCalendarPlus } from "react-icons/fa";
-import "./AddCategory.css";
+import "./AddCategory.scss";
 
 const apiURL = process.env.REACT_APP_SERVER_URL;
 
@@ -43,6 +43,7 @@ function AddCategory({ refreshCategories }) {
 
       <form onSubmit={handleSubmit}>
         <label>Choose a category name</label>
+
         <input
           name="categoryName"
           type="text"

@@ -3,7 +3,7 @@ import { AuthContext } from "../../context/auth.context";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-function NavbarOne({ menuOpen, setMenuOpen }) {
+function NavbarOne({ menuOpen }) {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
   return (
@@ -11,14 +11,15 @@ function NavbarOne({ menuOpen, setMenuOpen }) {
       <div className="wrapper">
         <div className="left">
           <Link className="logo-image" to="/">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/1584/1584892.png"
-              alt="Timex logo"
-            />{" "}
-            TIMEX
+            <img src="assets/Timex.png" alt="Timex logo" />
           </Link>
         </div>
         <div className="right">
+          {user && (
+            <div className="profile-img-wrapper">
+              <Link to="/profile">{user.image}</Link>
+            </div>
+          )}
           {isLoggedIn && (
             <>
               <button onClick={logOutUser}>Logout</button>
@@ -35,11 +36,6 @@ function NavbarOne({ menuOpen, setMenuOpen }) {
                 <button>Login</button>
               </Link>
             </>
-          )}
-          {user && (
-            <div className="profile-img-wrapper">
-              <Link to="/profile">{user.image}</Link>
-            </div>
           )}
         </div>
       </div>

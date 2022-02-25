@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import "../ProfilePage/ProfilePage.css";
+import "../ProfilePage/ProfilePage.scss";
 
 const apiURL = process.env.REACT_APP_SERVER_URL;
 

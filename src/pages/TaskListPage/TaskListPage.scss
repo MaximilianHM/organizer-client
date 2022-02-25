@@ -1,5 +1,15 @@
+@import "../../global.scss";
+
 .TasksListPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding-left: 350px;
+  transition: all 1s ease;
+
+  &.active {
+    padding-left: 100px;
+  }
 }
 
 .TableTask {
@@ -29,7 +39,7 @@ tr > th {
   background-color: transparent;
   border-style: none;
   margin: 0 5px;
-  color: var(--secondary-font-color);
+  color: $secondaryFontColor;
 }
 
 .btn-delete button {
