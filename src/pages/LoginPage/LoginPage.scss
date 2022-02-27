@@ -1,3 +1,9 @@
+@import "../../global.scss";
+
+p {
+  margin: 10px 0;
+}
+
 .error-message {
   text-align: center;
   color: #fff;
@@ -6,6 +12,23 @@
   border-radius: 4px;
 }
 
+.loginPage {
+  display: flex;
+  justify-content: center;
+  background-color: $mainColor;
+  height: 100vh;
+}
+
 .login-form {
   margin-top: 150px;
+}
+
+.card {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+  margin-top: 100px;
 }

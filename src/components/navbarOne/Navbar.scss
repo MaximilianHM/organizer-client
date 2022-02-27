@@ -17,6 +17,10 @@
     justify-content: space-between;
     width: 100%;
 
+    @include mobile {
+      padding: 0 10px;
+    }
+
     .left {
       flex: 3;
       display: flex;
@@ -26,6 +30,11 @@
       .logo-image img {
         margin-left: 50px;
         height: 40px;
+
+        @include mobile {
+          flex: 6;
+          margin-left: 0px;
+        }
       }
 
       .logo-image:hover {
@@ -38,6 +47,10 @@
       justify-content: end;
       align-items: center;
       flex: 9;
+
+      @include mobile {
+        flex: 6;
+      }
 
       button {
         background-color: transparent;

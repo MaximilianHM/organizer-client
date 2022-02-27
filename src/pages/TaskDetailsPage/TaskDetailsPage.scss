@@ -1,17 +1,45 @@
+@import "../../global.scss";
+
 .edit-card {
   max-width: 800px;
   border-radius: 4px;
-  border: solid black 2px;
   margin: 150px 0 0 400px;
   transition: all 1s ease;
+  box-shadow: 0px 2px 2px gray;
+
+  @include mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 100px;
+    width: 200px;
+  }
 
   &.active {
     margin-left: 100px;
+
+    @include mobile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+.input-field {
+  @include mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
 .edit-input {
   display: flex;
+
+  @include mobile {
+    flex-direction: column;
+  }
 }
 
 .edit-input label {
@@ -41,6 +69,11 @@
 .edit-description textarea {
   width: 80%;
   max-height: 100px;
+
+  @include mobile {
+    font-size: 12px;
+    height: 100px;
+  }
 }
 
 .edit-btn {

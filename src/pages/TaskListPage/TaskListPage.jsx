@@ -128,8 +128,8 @@ function TaskListPage({ menuOpen }) {
           <tr>
             <th>Task</th>
             <th>Status</th>
-            <th>Deadline</th>
-            <th>Description</th>
+            <th className="deadlineHead">Deadline</th>
+            <th className="desciptionHead">Description</th>
             <th>Edit</th>
             <th>Delete</th>
           </tr>
@@ -161,7 +161,7 @@ function TaskListPage({ menuOpen }) {
       <Table>
         {tasks.map((oneTask) => {
           return (
-            <tr key={oneTask._id}>
+            <tr className="taskTable" key={oneTask._id}>
               <td>
                 <label>{oneTask.taskName}</label>
               </td>
@@ -174,7 +174,7 @@ function TaskListPage({ menuOpen }) {
               <td className="description-field">
                 <label>{oneTask.description}</label>
               </td>
-              <td>
+              <td className="btn-details">
                 <Link to={"/tasks/" + oneTask._id}>
                   <Button>
                     <FaSearch />

@@ -7,8 +7,16 @@
   padding-left: 350px;
   transition: all 1s ease;
 
+  @include mobile {
+    padding-left: 50px;
+  }
+
   &.active {
     padding-left: 100px;
+
+    @include mobile {
+      padding-left: 50px;
+    }
   }
 }
 
@@ -28,6 +36,7 @@ tr {
   border: 0px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   color: var(--secondary-font-color);
 }
 
@@ -40,18 +49,65 @@ tr > th {
   border-style: none;
   margin: 0 5px;
   color: $secondaryFontColor;
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.btn-details button {
+  padding: 8px 4px !important;
+
+  @include mobile {
+    font-size: 12px;
+    padding: 5px 5px !important;
+  }
 }
 
 .btn-delete button {
-  padding: 8px 4px;
+  padding: 8px 4px !important;
+
+  @include mobile {
+    font-size: 12px;
+    padding: 3px 3px !important;
+  }
 }
 
 .description-field label {
   max-width: 160px;
   min-width: 160px;
   text-align: left;
+
+  @include mobile {
+    display: none;
+  }
+}
+.deadlineHead,
+.desciptionHead {
+  @include mobile {
+    display: none;
+  }
 }
 
 .blank-space {
   width: 140px;
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.table-head tr > th {
+  @include mobile {
+    font-weight: 400;
+  }
+}
+
+.taskTable {
+  td {
+    label {
+      font-size: 12px;
+      color: black;
+    }
+  }
 }

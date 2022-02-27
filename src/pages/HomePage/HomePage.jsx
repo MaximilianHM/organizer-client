@@ -70,8 +70,8 @@ function HomePage({ menuOpen }) {
               />
               <div className="how-to-do">
                 <h2>How to do it?</h2>
-                <p>First register at the Timex</p>
-                <p>After do the login </p>
+                <p>First register at the Timex.</p>
+                <p>After do the login. </p>
                 <p>
                   And then start to create a category and then create your
                   tasks!

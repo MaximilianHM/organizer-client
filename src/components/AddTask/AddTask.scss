@@ -1,3 +1,5 @@
+@import "../../global.scss";
+
 .addform {
   display: flex;
   flex-direction: column;
@@ -24,6 +26,10 @@
   justify-content: center;
   align-items: center;
   justify-content: space-evenly;
+
+  @include mobile {
+    flex-direction: column;
+  }
 }
 
 .task-description {
@@ -47,6 +53,11 @@
 .input-task input {
   margin: 0px;
   padding: 0px;
+  border-radius: 10px;
+}
+
+.input-task input:focus {
+  outline: none;
 }
 
 .deadline input {

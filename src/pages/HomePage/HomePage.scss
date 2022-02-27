@@ -1,10 +1,17 @@
+@import "../../global.scss";
+
 hr {
   width: 50%;
   height: 5px !important;
   border-radius: 5px;
   margin: 100px 0 !important;
   color: var(--secondary-font-color) !important;
+
+  @include mobile {
+    display: none;
+  }
 }
+
 .home-page-not-loggedin {
   display: flex;
   flex-direction: column;
@@ -53,6 +60,10 @@ hr {
   align-items: center;
   background-color: #fff;
   margin-top: 100px;
+
+  @include mobile {
+    display: none;
+  }
 }
 
 /** why timex */
@@ -64,6 +75,12 @@ hr {
   justify-content: center;
   background-color: #fff;
   width: 100%;
+
+  @include mobile {
+    height: 100vh;
+    flex-direction: column;
+    margin: 20px 0 20px 0;
+  }
 }
 
 .why-timex p {
@@ -83,8 +100,13 @@ hr {
   width: 400px;
   height: 300px;
   border-radius: 30px;
-  margin-top: 100px;
-  margin-bottom: 50px;
+  margin: 100px 0 50px 0;
+
+  @include mobile {
+    width: 350px;
+    height: 160px;
+    margin: 20px 0;
+  }
 }
 
 .carousel-indicators button {
@@ -100,6 +122,10 @@ hr {
 .carousel-caption p {
   color: transparent;
   margin-bottom: 100px;
+
+  @include mobile {
+    margin-bottom: 0;
+  }
 }
 
 .carousel {
@@ -116,6 +142,11 @@ hr {
   max-width: 1200px;
   max-height: 600px;
   opacity: 0.7;
+
+  @include mobile {
+    max-width: 350px;
+    max-height: 160px;
+  }
 }
 
 .plans {
@@ -125,20 +156,38 @@ hr {
   background-color: #fff;
   width: 100%;
   padding: 100px 0;
+
+  @include mobile {
+  }
 }
 
 .plans h2 {
   margin-bottom: 50px;
   font-weight: 600;
+
+  @include mobile {
+    text-align: left;
+  }
 }
 
 .plans p {
   width: 30%;
   line-height: 50px;
+
+  @include mobile {
+    text-align: left;
+    width: 80%;
+  }
 }
 
 .container-how-to-do {
   display: flex;
+
+  @include mobile {
+    padding: 20px 0;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
 }
 
 .container-how-to-do img {
@@ -146,6 +195,11 @@ hr {
   width: 400px;
   height: 300px;
   border-radius: 30px;
+
+  @include mobile {
+    width: 350px;
+    height: 200px;
+  }
 }
 
 .how-to-do {
@@ -161,6 +215,11 @@ hr {
 
 .how-to-do p {
   text-align: left;
+
+  @include mobile {
+    margin-bottom: 0;
+    font-weight: 200;
+  }
 }
 
 .home-loggedin {
@@ -170,8 +229,12 @@ hr {
   margin: 100px 0 0 350px;
   transition: all 1s ease;
 
+  @include mobile {
+    margin: 100px 0 0 50px;
+  }
+
   &.active {
-    margin-left: 100px;
+    margin-left: 50px;
   }
 
   .home-loggedin-img {
@@ -183,6 +246,11 @@ hr {
   .home-loggedin-img img {
     height: 300px;
     width: 450px;
+
+    @include mobile {
+      height: 200px;
+      width: 300px;
+    }
   }
 
   .loggedin-plans {
@@ -201,5 +269,9 @@ hr {
 
   .loggedin-plans p {
     width: 40%;
+
+    @include mobile {
+      width: 80%;
+    }
   }
 }

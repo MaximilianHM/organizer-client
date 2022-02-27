@@ -49,7 +49,7 @@ function LoginPage(props) {
   };
 
   return (
-    <>
+    <div className="loginPage">
       <Card className="login-form">
         <CardBody>
           <h1>Login</h1>
@@ -91,7 +91,7 @@ function LoginPage(props) {
           </Link>
         </CardBody>
       </Card>
-    </>
+    </div>
   );
 }
 
