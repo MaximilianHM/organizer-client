@@ -22,6 +22,12 @@
 
   @include mobile {
     width: 250px;
+    padding: 20px 10px;
+  }
+
+  @include smallDevice {
+    width: 250px;
+    margin-left: 50px;
   }
 }
 

@@ -12,7 +12,13 @@
     flex-direction: column;
     align-items: center;
     margin-left: 100px;
-    width: 200px;
+    width: 250px;
+  }
+
+  @include smallDevice {
+    margin-left: 80px;
+    margin-top: 100px;
+    // height: 450px;
   }
 
   &.active {
@@ -22,6 +28,12 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 250px;
+    }
+
+    @include smallDevice {
+      margin-left: 80px;
+      width: 200px;
     }
   }
 }
@@ -57,6 +69,11 @@
   margin: 0;
   padding: 0;
   max-height: 24px;
+  width: 150px;
+
+  option {
+    font-size: 12px;
+  }
 }
 
 .edit-description {
@@ -73,6 +90,7 @@
   @include mobile {
     font-size: 12px;
     height: 100px;
+    width: 95%;
   }
 }
 
@@ -88,5 +106,13 @@
 }
 
 .deadline-input input {
-  max-width: 135px;
+  max-width: 150px;
+
+  @include smallDevice {
+    width: 80%;
+  }
+}
+
+.input-name input {
+  max-width: 150px;
 }

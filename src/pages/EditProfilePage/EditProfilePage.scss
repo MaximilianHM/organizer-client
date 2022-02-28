@@ -26,6 +26,11 @@
     width: 270px;
   }
 
+  @include smallDevice {
+    width: 250px;
+    padding: 5px;
+  }
+
   form {
     height: 100%;
     display: flex;
@@ -50,4 +55,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @include smallDevice {
+    flex-direction: column;
+  }
 }

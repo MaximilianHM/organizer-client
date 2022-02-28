@@ -69,7 +69,7 @@ function TaskDetailsPage({ menuOpen }) {
       <form className="edit-form" onSubmit={handleSubmit}>
         <div className="edit-input">
           <div className="input-field">
-            <div className="input-field test">
+            <div className="input-field input-name">
               <label>Task name:</label>
               <input
                 type="text"

@@ -107,6 +107,11 @@ hr {
     height: 160px;
     margin: 20px 0;
   }
+
+  @include smallDevice {
+    width: 300px;
+    height: 150px;
+  }
 }
 
 .carousel-indicators button {
@@ -147,6 +152,11 @@ hr {
     max-width: 350px;
     max-height: 160px;
   }
+
+  @include smallDevice {
+    width: 300px;
+    height: 130px;
+  }
 }
 
 .plans {
@@ -156,9 +166,6 @@ hr {
   background-color: #fff;
   width: 100%;
   padding: 100px 0;
-
-  @include mobile {
-  }
 }
 
 .plans h2 {
@@ -199,6 +206,11 @@ hr {
   @include mobile {
     width: 350px;
     height: 200px;
+  }
+
+  @include smallDevice {
+    width: 300px;
+    height: 150px;
   }
 }
 
@@ -250,6 +262,11 @@ hr {
     @include mobile {
       height: 200px;
       width: 300px;
+    }
+
+    @include smallDevice {
+      width: 250px;
+      height: 150px;
     }
   }
 
